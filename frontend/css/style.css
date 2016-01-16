@@ -1,0 +1,31 @@
+#search-form {
+  margin-top: 30px;
+}
+
+.channel {
+  margin-bottom: 50px;
+}
+
+.channel-results {
+  list-style: none;
+  padding: 0;
+  overflow: scroll;
+  max-height: 400px;
+}
+
+#subscription-controls {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#subscription-controls button {
+  padding: 10px 15px;
+}
+
+.twitter-icon {
+  vertical-align: top;
+}
+
+.tweets-container {
+  width: 800px;
+}

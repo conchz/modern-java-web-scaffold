@@ -1,0 +1,14 @@
+group 'com.github.dolphineor'
+version '0.1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'

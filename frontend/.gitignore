@@ -1,0 +1,5 @@
+bundle.js
+*.log
+
+dist/
+node_modules/

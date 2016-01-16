@@ -1,0 +1,3 @@
+rootProject.name = 'modern-java-web-scaffold'
+
+include 'backend', 'frontend'

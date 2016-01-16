@@ -1,0 +1,46 @@
+<div>
+  <section class="blue-gradient-background intro-splash splash">
+    <div class="container center-all-container">
+      <h1 class="white light splash-title">
+        Pusher Vue.js Realtime Demo
+      </h1>
+
+      <p class="white light splash-subtitle">
+        Displaying live tweets using Pusher and VueJS.
+      </p>
+
+      <div id="search-form">
+        <form v-on:submit.prevent="newSubscription">
+          <input class="swish-input" v-model="newSearchTerm" placeholder="Enter your search term now" />
+          <button class="bright-blue-hover btn-white">Search</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container tweets-container">
+      <div id="channels-list">
+        <div class="channel" v-for="channel in channels">
+          <h3 class="white light">
+            <img class="twitter-icon" src="img/twitter.png" width="30" />
+            Tweets for {{ channel.term }}
+          </h3>
+          <div id="subscription-controls">
+            <button class="btn-white secondary" v-on:click.prevent="toggleSearch(channel)">
+              {{channel.active ? 'Stop' : 'Restart'}} Stream
+            </button>
+            <button class="btn-white secondary" v-on:click.prevent="clearSearch(channel)">
+              Remove Results
+            </button>
+          </div>
+          <subscription-component
+            :channel="channel"
+            :pusher="pusher"></subscription-component>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>

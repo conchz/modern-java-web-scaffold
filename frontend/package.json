@@ -1,0 +1,30 @@
+{
+  "name": "akkahttp-with-vue",
+  "version": "0.1.0-SNAPSHOT",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server --port=7001",
+    "watch": "webpack -w"
+  },
+  "keywords": [
+    "vue",
+    "webpack"
+  ],
+  "author": "Zongzhi Bai <dolphineor@gmail.com> (https://github.com/dolphineor)",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "live-server": "^0.9.0",
+    "raw-loader": "^0.5.1"
+  },
+  "dependencies": {
+    "vue": "^1.0.14",
+    "vue-loader": "^8.0.0",
+    "vue-router": "^0.7.8",
+    "webpack": "^1.12.10",
+    "pusher-js": "^3.0.0"
+  }
+}
