@@ -13,7 +13,7 @@
 
     <!-- 读取配置文件 -->
     <context:property-placeholder
-            location="classpath:jdbc-h2.properties"/>
+            location="classpath:jdbc-h2.properties,classpath:deploy.properties"/>
 
     <context:annotation-config/>
     <!-- 扫描注解, 除去web层注解, web层注解在mvc配置中扫描 -->
@@ -26,7 +26,18 @@
     <!-- 开启AOP监听, 只对当前配置文件有效 -->
     <aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
 
+    <!-- Web Server -->
+    <bean id="webAppServer" class="com.github.dolphineor.web.WebAppServer" lazy-init="false" destroy-method="destroy">
+        <constructor-arg name="port" value="${deploy.port}"/>
+        <constructor-arg name="webAppName" value="${deploy.webAppName}"/>
+        <constructor-arg name="webAppRoot">
+            <bean class="org.springframework.core.io.PathResource">
+                <constructor-arg name="path" value="${deploy.webAppRootPath}"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
     <import resource="spring-mvc.xml"/>
-    <import resource="spring-mybatis.xml"/>
+    <!--<import resource="spring-mybatis.xml"/>-->
 
 </beans>
