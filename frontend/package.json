@@ -1,5 +1,5 @@
 {
-  "name": "akkahttp-with-vue",
+  "name": "akkahttp-with-vue-frontend",
   "version": "0.1.0-SNAPSHOT",
   "description": "",
   "main": "index.js",
@@ -22,9 +22,8 @@
   },
   "dependencies": {
     "vue": "^1.0.14",
-    "vue-loader": "^8.0.0",
     "vue-router": "^0.7.8",
-    "webpack": "^1.12.10",
+    "webpack": "^1.12.11",
     "pusher-js": "^3.0.0"
   }
 }
