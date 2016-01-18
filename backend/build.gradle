@@ -7,8 +7,71 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
+        classpath "com.h2database:h2:$h2dbVersion"
+        classpath "org.flywaydb:flyway-gradle-plugin:3.2.1"
     }
 }
 
-apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'org.flywaydb.flyway'
+
+configurations {
+    mybatisGenerator
+}
+
+ext {
+
+    def prop = new Properties();
+    file("src/main/resources/jdbc-h2.properties").withInputStream {
+        prop.load(it)
+    }
+    prop.each {
+        project.extensions.add("$it.key", it.value);
+
+    }
+}
+
+flyway {
+    url = project['jdbc.url']
+    user = project['jdbc.username']
+    password = project['jdbc.password']
+    locations = ["filesystem:db/migration"]
+}
+
+dependencies {
+    mybatisGenerator "org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion"
+    mybatisGenerator "com.h2database:h2:$h2dbVersion"
+    mybatisGenerator "tk.mybatis:mapper:$mybatisMapperVersion"
+}
+
+task mybatisGenerate << {
+    ant.properties['targetProject'] = projectDir.path
+    ant.properties['driverClass'] = project['jdbc.driverClassName']
+    ant.properties['connectionURL'] = project['jdbc.url']
+    ant.properties['userId'] = project['jdbc.user']
+    ant.properties['password'] = project['jdbc.pass']
+    ant.properties['src_main_java'] = sourceSets.main.java.srcDirs[0].path
+    ant.properties['src_main_resources'] = sourceSets.main.resources.srcDirs[0].path
+    ant.properties['modelPackage'] = this.modelPackage
+    ant.properties['mapperPackage'] = this.mapperPackage
+    ant.properties['sqlMapperPackage'] = this.sqlMapperPackage
+
+    ant.taskdef(
+            name: 'mbgenerator',
+            classname: 'org.mybatis.generator.ant.GeneratorAntTask',
+            classpath: configurations.mybatisGenerator.asPath
+    )
+    ant.mbgenerator(overwrite: true, configfile: 'db/generatorConfig.xml', verbose: true) {
+        propertyset {
+            propertyref(name: 'targetProject')
+            propertyref(name: 'userId')
+            propertyref(name: 'driverClass')
+            propertyref(name: 'connectionURL')
+            propertyref(name: 'password')
+            propertyref(name: 'src_main_java')
+            propertyref(name: 'src_main_resources')
+            propertyref(name: 'modelPackage')
+            propertyref(name: 'mapperPackage')
+            propertyref(name: 'sqlMapperPackage')
+        }
+    }
+}
