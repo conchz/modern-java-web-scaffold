@@ -4,4 +4,4 @@ jdk:
 before_install:
   - chmod +x gradlew
 script:
-  - gradle :backend:clean shadowJar
+  - ./gradlew :backend:clean shadowJar

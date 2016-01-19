@@ -3,7 +3,6 @@ version '0.1.0-SNAPSHOT'
 
 buildscript {
     repositories {
-        mavenCentral()
         jcenter()
     }
 
@@ -59,6 +58,15 @@ shadowJar {
     }
 
     mergeServiceFiles('META-INF/spring.*')
+}
+
+docker {
+    javaApplication {
+        baseImage = 'dockerfile/java:openjdk-8-jre'
+        maintainer = 'Zongzhi Bai "dolphineor@gmail.com"'
+        port = 8081
+        tag = 'modern-java-web-scaffold:0.1.0'
+    }
 }
 
 task mybatisGenerate << {

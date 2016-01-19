@@ -20,7 +20,7 @@ public class WebAppBoot {
             // Start H2Database
             Server h2dbServer = Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers").start();
 
-            WebAppServer webAppServer = new WebAppServer("modern-java-web-scaffold", new PathResource("/"), 8080).start();
+            WebAppServer webAppServer = new WebAppServer("modern-java-web-scaffold", new PathResource("/"), 8081).start();
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {
