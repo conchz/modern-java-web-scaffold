@@ -7,28 +7,32 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
         classpath "com.h2database:h2:$h2dbVersion"
-        classpath "org.flywaydb:flyway-gradle-plugin:3.2.1"
+        classpath "com.github.jengelman.gradle.plugins:shadow:$shadowPluginVersion"
+        classpath "org.flywaydb:flyway-gradle-plugin:$flywayPluginVersion"
+        classpath "com.bmuschko:gradle-docker-plugin:$dockerPluginVersion"
     }
 }
 
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'org.flywaydb.flyway'
+apply plugin: 'com.bmuschko.docker-java-application'
 
 configurations {
+    // Use logback-slf4j instead of the Spring's commons-logging
+    all*.exclude group: 'commons-logging', module: 'commons-logging'
+
     mybatisGenerator
 }
 
 ext {
 
-    def prop = new Properties();
+    def props = new Properties();
     file("src/main/resources/jdbc-h2.properties").withInputStream {
-        prop.load(it)
+        props.load(it)
     }
-    prop.each {
+    props.each {
         project.extensions.add("$it.key", it.value);
-
     }
 }
 

@@ -1,15 +1,13 @@
 package com.github.dolphineor.web;
 
+import com.google.common.collect.Lists;
 import io.undertow.Handlers;
 import io.undertow.Undertow;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.handlers.PathHandler;
 import io.undertow.server.handlers.resource.FileResourceManager;
 import io.undertow.servlet.Servlets;
-import io.undertow.servlet.api.DeploymentInfo;
-import io.undertow.servlet.api.DeploymentManager;
-import io.undertow.servlet.api.InstanceFactory;
-import io.undertow.servlet.api.ServletContainerInitializerInfo;
+import io.undertow.servlet.api.*;
 import io.undertow.servlet.handlers.DefaultServlet;
 import io.undertow.servlet.util.ImmediateInstanceFactory;
 import org.slf4j.Logger;
@@ -21,6 +19,7 @@ import javax.servlet.ServletException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created on 2016-01-16.
@@ -28,6 +27,8 @@ import java.util.HashSet;
  * @author dolphineor
  */
 public class WebAppServer implements DisposableBean {
+    private final List<String> staticResourceMappings =
+            Lists.newArrayList("*.css", "js", "*.ico", "*.gif", "*.jpg", "*.jpeg", "*.png");
     private final Logger logger = LoggerFactory.getLogger(WebAppServer.class);
 
     private String webAppName;
@@ -51,13 +52,15 @@ public class WebAppServer implements DisposableBean {
         );
 
         File webAppRootFile = webAppRoot.getFile();
+        ServletInfo defaultServlet = Servlets.servlet("default", DefaultServlet.class)
+                .addMappings(staticResourceMappings);
         DeploymentInfo deploymentInfo = Servlets.deployment()
                 .addServletContainerInitalizer(sciInfo)
                 .setClassLoader(WebAppServer.class.getClassLoader())
                 .setContextPath(webAppName)
-                .setDeploymentName(webAppName + "-war")
+                .setDeploymentName(webAppName + "-exploded")
                 .setResourceManager(new FileResourceManager(webAppRootFile, 0))
-                .addServlet(Servlets.servlet("default", DefaultServlet.class));
+                .addServlet(defaultServlet);
         deploymentManager = Servlets.defaultContainer().addDeployment(deploymentInfo);
         deploymentManager.deploy();
 
@@ -66,7 +69,7 @@ public class WebAppServer implements DisposableBean {
         pathHandler.addPrefixPath("/" + webAppName, httpHandler);
 
         undertowServer = Undertow.builder()
-                .addHttpListener(port, "localhost")
+                .addHttpListener(port, "::0")
                 .setHandler(httpHandler)
                 .build();
 

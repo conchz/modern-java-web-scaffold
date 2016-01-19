@@ -8,6 +8,7 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.util.IntrospectorCleanupListener;
 
 import javax.servlet.*;
 import java.util.Set;
@@ -32,6 +33,7 @@ public class WebAppServletContainerInitializer implements ServletContainerInitia
 
         // Manage the lifecycle of the root appContext
         servletContext.addListener(new ContextLoaderListener(rootContext));
+        servletContext.addListener(IntrospectorCleanupListener.class);
         servletContext.setInitParameter("defaultHtmlEscape", "true");
 
         // Load config for the Dispatcher servlet
@@ -39,7 +41,7 @@ public class WebAppServletContainerInitializer implements ServletContainerInitia
         mvcContext.register(WebMvcConfig.class);
 
         // The main Spring MVC servlet
-        ServletRegistration.Dynamic appServlet = servletContext.addServlet("appServlet", new DispatcherServlet(mvcContext));
+        ServletRegistration.Dynamic appServlet = servletContext.addServlet("modern-java-web-scaffold", new DispatcherServlet(mvcContext));
         appServlet.setLoadOnStartup(1);
         appServlet.addMapping("/*");
 
