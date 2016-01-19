@@ -25,6 +25,8 @@ configurations {
     mybatisGenerator
 }
 
+def _version = "${project.version}".replace("-SNAPSHOT", "")
+
 ext {
 
     def props = new Properties();
@@ -54,7 +56,7 @@ shadowJar {
     manifest {
         attributes 'Manifest-Version': '1.0',
                 'Main-Class': 'com.github.dolphineor.boot.WebAppBoot',
-                'Bundle-Version': "${project.version}".replace("-SNAPSHOT", "")
+                'Bundle-Version': _version
     }
 
     mergeServiceFiles('META-INF/spring.*')
@@ -62,10 +64,10 @@ shadowJar {
 
 docker {
     javaApplication {
-        baseImage = 'dockerfile/java:openjdk-8-jre'
-        maintainer = 'Zongzhi Bai "dolphineor@gmail.com"'
+        baseImage = "dockerfile/java:openjdk-8-jre"
+        maintainer = "Zongzhi Bai <dolphineor@gmail.com>"
         port = 8081
-        tag = 'modern-java-web-scaffold:0.1.0'
+        tag = "modern-java-web-scaffold:$_version"
     }
 }
 

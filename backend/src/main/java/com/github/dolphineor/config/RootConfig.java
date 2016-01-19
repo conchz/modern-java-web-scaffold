@@ -1,7 +1,6 @@
 package com.github.dolphineor.config;
 
 import org.springframework.context.annotation.*;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Created on 2016-01-18.
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-@EnableTransactionManagement
 @PropertySource(value = {"classpath:jdbc-h2.properties"})
 @ComponentScan(basePackages = {"com.github.dolphineor.model.dao", "com.github.dolphineor.mapper", "com.github.dolphineor.service"},
         excludeFilters = {
