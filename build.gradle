@@ -27,7 +27,7 @@ project(':backend') {
 
         logbackVersion = '1.1.3'
         guavaVersion = '19.0'
-        undertowVersion = '1.3.12.Final'
+        undertowVersion = '1.3.14.Final'
         jacksonVersion = '2.7.0'
         aspectjVersion = '1.8.8'
         springVersion = '4.2.4.RELEASE'
