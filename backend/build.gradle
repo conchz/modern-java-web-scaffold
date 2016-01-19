@@ -16,7 +16,7 @@ buildscript {
 
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'org.flywaydb.flyway'
-apply plugin: 'com.bmuschko.docker-java-application'
+apply plugin: com.bmuschko.gradle.docker.DockerJavaApplicationPlugin
 
 configurations {
     // Use logback-slf4j instead of the Spring's commons-logging
