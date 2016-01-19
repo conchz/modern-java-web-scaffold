@@ -15,10 +15,11 @@ import io.undertow.servlet.util.ImmediateInstanceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 
+import javax.servlet.ServletException;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 
 /**
@@ -26,30 +27,27 @@ import java.util.HashSet;
  *
  * @author dolphineor
  */
-public class WebAppServer implements InitializingBean, DisposableBean {
+public class WebAppServer implements DisposableBean {
     private final Logger logger = LoggerFactory.getLogger(WebAppServer.class);
 
-    private int port;
     private String webAppName;
     private Resource webAppRoot;
+    private int port;
 
     private Undertow undertowServer;
     private DeploymentManager deploymentManager;
 
-    public WebAppServer(int port, String webAppName, Resource webAppRoot) {
-        this.port = port;
+    public WebAppServer(String webAppName, Resource webAppRoot, int port) {
         this.webAppName = webAppName;
         this.webAppRoot = webAppRoot;
+        this.port = port;
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
+    public WebAppServer start() throws IOException, ServletException {
         InstanceFactory<WebAppServletContainerInitializer> instanceFactory =
                 new ImmediateInstanceFactory<>(new WebAppServletContainerInitializer());
         ServletContainerInitializerInfo sciInfo = new ServletContainerInitializerInfo(
-                WebAppServletContainerInitializer.class,
-                instanceFactory,
-                new HashSet<>()
+                WebAppServletContainerInitializer.class, instanceFactory, new HashSet<>()
         );
 
         File webAppRootFile = webAppRoot.getFile();
@@ -73,6 +71,8 @@ public class WebAppServer implements InitializingBean, DisposableBean {
                 .build();
 
         undertowServer.start();
+
+        return this;
     }
 
     @Override

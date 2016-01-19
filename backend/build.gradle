@@ -7,11 +7,13 @@ buildscript {
     }
 
     dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
         classpath "com.h2database:h2:$h2dbVersion"
         classpath "org.flywaydb:flyway-gradle-plugin:3.2.1"
     }
 }
 
+apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'org.flywaydb.flyway'
 
 configurations {
@@ -41,6 +43,17 @@ dependencies {
     mybatisGenerator "org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion"
     mybatisGenerator "com.h2database:h2:$h2dbVersion"
     mybatisGenerator "tk.mybatis:mapper:$mybatisMapperVersion"
+}
+
+shadowJar {
+    baseName = "${rootProject.name}-${project.name}"
+    manifest {
+        attributes 'Manifest-Version': '1.0',
+                'Main-Class': 'com.github.dolphineor.boot.WebAppBoot',
+                'Bundle-Version': "${project.version}".replace("-SNAPSHOT", "")
+    }
+
+    mergeServiceFiles('META-INF/spring.*')
 }
 
 task mybatisGenerate << {

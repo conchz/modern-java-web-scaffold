@@ -14,7 +14,6 @@ allprojects {
 project(':backend') {
     apply plugin: 'application'
     apply plugin: 'java'
-    apply plugin: 'war'
 
     compileJava.options.encoding = 'UTF-8'
 
