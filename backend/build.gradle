@@ -4,19 +4,20 @@ version '0.1.0-SNAPSHOT'
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
         classpath "com.h2database:h2:$h2dbVersion"
-        classpath "com.github.jengelman.gradle.plugins:shadow:$shadowPluginVersion"
         classpath "org.flywaydb:flyway-gradle-plugin:$flywayPluginVersion"
-        classpath "com.bmuschko:gradle-docker-plugin:$dockerPluginVersion"
+        classpath "us.kirchmeier:gradle-capsule-plugin:$capsulePluginVersion"
     }
 }
 
-apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'org.flywaydb.flyway'
-apply plugin: 'com.bmuschko.docker-java-application'
+apply plugin: 'us.kirchmeier.capsule'
 
 configurations {
     // Use logback-slf4j instead of the Spring's commons-logging
@@ -24,8 +25,6 @@ configurations {
 
     mybatisGenerator
 }
-
-def _version = "${project.version}".replace("-SNAPSHOT", "")
 
 ext {
 
@@ -51,23 +50,14 @@ dependencies {
     mybatisGenerator "tk.mybatis:mapper:$mybatisMapperVersion"
 }
 
-shadowJar {
-    baseName = "${rootProject.name}-${project.name}"
-    manifest {
-        attributes 'Manifest-Version': '1.0',
-                'Main-Class': 'com.github.dolphineor.boot.WebAppBoot',
-                'Bundle-Version': _version
-    }
+task fatCapsule(type: FatCapsule) {
+    applicationClass 'com.github.dolphineor.boot.WebAppBoot'
 
-    mergeServiceFiles('META-INF/spring.*')
-}
+    baseName = rootProject.name
 
-docker {
-    javaApplication {
-        baseImage = "dockerfile/java:openjdk-8-jre"
-        maintainer = "Zongzhi Bai <dolphineor@gmail.com>"
-        port = 8081
-        tag = "modern-java-web-scaffold:$_version"
+    capsuleManifest {
+        args = ['--very-fancy']
+        minJavaVersion = '1.8'
     }
 }
 
