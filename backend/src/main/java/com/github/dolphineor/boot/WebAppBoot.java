@@ -2,7 +2,6 @@ package com.github.dolphineor.boot;
 
 import com.github.dolphineor.web.WebAppServer;
 import org.h2.tools.Server;
-import org.springframework.core.io.PathResource;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -17,10 +16,9 @@ public class WebAppBoot {
 
     public static void main(String[] args) {
         try {
-            // Start H2Database
             Server h2dbServer = Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers").start();
 
-            WebAppServer webAppServer = new WebAppServer("modern-java-web-scaffold", new PathResource("/"), 8081).start();
+            WebAppServer webAppServer = new WebAppServer("modern-java-web-scaffold", 8081).start();
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {

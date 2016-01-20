@@ -9,7 +9,7 @@ import org.springframework.context.annotation.*;
  */
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-@PropertySource(value = {"classpath:jdbc-h2.properties"})
+//@ImportResource(locations = {"classpath:spring-mybatis.xml"})
 @ComponentScan(basePackages = {"com.github.dolphineor.model.dao", "com.github.dolphineor.mapper", "com.github.dolphineor.service"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.stereotype.Controller.class),
