@@ -22,6 +22,11 @@
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
+        <property name="minimumIdle" value="${jdbc.minimumIdle}"/>
+        <property name="maximumPoolSize" value="${jdbc.maximumPoolSize}"/>
+        <property name="connectionTimeout" value="${jdbc.connectionTimeout}"/>
+        <property name="idleTimeout" value="${jdbc.idleTimeout}"/>
+        <property name="connectionTestQuery" value="${jdbc.connectionTestQuery}"/>
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
