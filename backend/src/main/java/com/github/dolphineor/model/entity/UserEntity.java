@@ -15,9 +15,7 @@ public class UserEntity {
 
     private String password;
 
-    private int gender;
-
-    private boolean isValid;
+    private boolean state;
 
     private Date birthday;
 
@@ -48,20 +46,12 @@ public class UserEntity {
         this.password = password;
     }
 
-    public int getGender() {
-        return gender;
+    public boolean isState() {
+        return state;
     }
 
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public boolean isValid() {
-        return isValid;
-    }
-
-    public void setValid(boolean valid) {
-        isValid = valid;
+    public void setState(boolean state) {
+        this.state = state;
     }
 
     public Date getBirthday() {
