@@ -1,5 +1,5 @@
 {
-  "name": "akkahttp-with-vue-frontend",
+  "name": "modern-java-web-scaffold-frontend",
   "version": "0.1.0-SNAPSHOT",
   "description": "",
   "main": "index.js",
@@ -21,6 +21,7 @@
     "raw-loader": "^0.5.1"
   },
   "dependencies": {
+    "handlebars": "^4.0.5",
     "vue": "^1.0.15",
     "vue-router": "^0.7.8",
     "webpack": "^1.12.11",
