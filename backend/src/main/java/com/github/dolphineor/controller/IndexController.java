@@ -1,7 +1,9 @@
 package com.github.dolphineor.controller;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.AbstractView;
@@ -20,7 +22,7 @@ import java.util.Map;
 @Scope("prototype")
 public class IndexController {
 
-    @RequestMapping(path = {"/", "/index"})
+    @RequestMapping(path = {"/", "/index"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ModelAndView index() {
         AbstractView jsonView = new MappingJackson2JsonView();
         Map<String, Object> attributes = new HashMap<String, Object>() {{

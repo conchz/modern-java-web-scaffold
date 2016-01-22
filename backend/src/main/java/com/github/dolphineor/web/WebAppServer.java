@@ -55,7 +55,7 @@ public class WebAppServer implements DisposableBean {
                 .setContextPath("/")
                 .setDefaultEncoding("UTF-8")
                 .setDeploymentName(webAppName + "-exploded")
-                .setResourceManager(new ClassPathResourceManager(WebAppServer.class.getClassLoader()))
+                .setResourceManager(new ClassPathResourceManager(this.getClass().getClassLoader()))
                 .addServlet(defaultServlet);
         deploymentManager = Servlets.defaultContainer().addDeployment(deploymentInfo);
         deploymentManager.deploy();

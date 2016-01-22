@@ -24,6 +24,7 @@ public class RootConfig {
     private static Resource[] propertyLocations = {new ClassPathResource("jdbc-h2.properties")};
 
 
+    // 加载*.properties文件
     @Bean
     public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
         PropertyPlaceholderConfigurer propertyPlaceholderConfigurer =

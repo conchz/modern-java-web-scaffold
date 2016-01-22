@@ -2,6 +2,7 @@ package com.github.dolphineor.web;
 
 import com.github.dolphineor.config.RootConfig;
 import com.github.dolphineor.config.WebMvcConfig;
+import com.github.dolphineor.web.filter.RestRequestFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.ContextLoaderListener;
@@ -33,7 +34,7 @@ public class WebAppServletContainerInitializer implements ServletContainerInitia
 
         // Manage the lifecycle of the root appContext
         servletContext.addListener(new ContextLoaderListener(rootContext));
-        servletContext.addListener(IntrospectorCleanupListener.class);
+        servletContext.addListener(new IntrospectorCleanupListener());
         servletContext.setInitParameter("defaultHtmlEscape", "true");
 
         // Load config for the Dispatcher servlet
@@ -46,10 +47,14 @@ public class WebAppServletContainerInitializer implements ServletContainerInitia
         appServlet.addMapping("/*");
 
         // Setting EncodingFilter
-        FilterRegistration.Dynamic fr = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
-        fr.setInitParameter("encoding", "UTF-8");
-        fr.setInitParameter("forceEncoding", "true");
-        fr.addMappingForUrlPatterns(null, true, "/*");
+        FilterRegistration.Dynamic encodingFilterRegistration = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
+        encodingFilterRegistration.setInitParameter("encoding", "UTF-8");
+        encodingFilterRegistration.setInitParameter("forceEncoding", "true");
+        encodingFilterRegistration.addMappingForUrlPatterns(null, true, "/*");
+
+        // Support for CORS
+        FilterRegistration.Dynamic restRequestFilterRegistration = servletContext.addFilter("restRequestFilter", new RestRequestFilter());
+        restRequestFilterRegistration.addMappingForUrlPatterns(null, true, "/*");
 
 
         Set<String> mappingConflicts = appServlet.addMapping("/");
