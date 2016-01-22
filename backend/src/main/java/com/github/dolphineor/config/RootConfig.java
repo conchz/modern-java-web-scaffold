@@ -1,6 +1,9 @@
 package com.github.dolphineor.config;
 
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.*;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 /**
  * Created on 2016-01-18.
@@ -17,4 +20,16 @@ import org.springframework.context.annotation.*;
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.web.bind.annotation.RestController.class)}
 )
 public class RootConfig {
+
+    private static Resource[] propertyLocations = {new ClassPathResource("jdbc-h2.properties")};
+
+
+    @Bean
+    public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
+        PropertyPlaceholderConfigurer propertyPlaceholderConfigurer =
+                new PropertyPlaceholderConfigurer();
+        propertyPlaceholderConfigurer.setLocations(propertyLocations);
+
+        return propertyPlaceholderConfigurer;
+    }
 }

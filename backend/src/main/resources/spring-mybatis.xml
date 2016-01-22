@@ -12,11 +12,6 @@
        default-lazy-init="true">
 
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations" value="classpath:jdbc-h2.properties"/>
-    </bean>
-
-
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="jdbcUrl" value="${jdbc.url}"/>
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
@@ -27,6 +22,13 @@
         <property name="connectionTimeout" value="${jdbc.connectionTimeout}"/>
         <property name="idleTimeout" value="${jdbc.idleTimeout}"/>
         <property name="connectionTestQuery" value="${jdbc.connectionTestQuery}"/>
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="cachePrepStmts">${jdbc.dataSourceProperties.cachePrepStmts}</prop>
+                <prop key="prepStmtCacheSize">${jdbc.dataSourceProperties.prepStmtCacheSize}</prop>
+                <prop key="prepStmtCacheSqlLimit">${jdbc.dataSourceProperties.prepStmtCacheSqlLimit}</prop>
+            </props>
+        </property>
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">

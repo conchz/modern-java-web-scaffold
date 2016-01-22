@@ -29,8 +29,6 @@ project(':backend') {
         aspectjVersion = '1.8.8'
         springVersion = '4.2.4.RELEASE'
         shiroSpringVersion = '1.2.4'
-        h2dbVersion = '1.4.190'
-        hikariCPVersion = '2.4.3'
         mybatisVersion = '3.3.0'
         mybatisSpringVersion = '1.2.3'
     }
@@ -45,8 +43,8 @@ project(':backend') {
         compile "org.mybatis:mybatis:$mybatisVersion"
         compile "org.mybatis:mybatis-spring:$mybatisSpringVersion"
         compile "org.apache.shiro:shiro-spring:$shiroSpringVersion"
-        compile "com.h2database:h2:$h2dbVersion"
-        compile "com.zaxxer:HikariCP:$hikariCPVersion"
+        compile "mysql:mysql-connector-java:5.1.38"
+        compile "com.zaxxer:HikariCP:2.4.3"
         compile "com.alibaba:fastjson:1.2.7"
         compile "com.google.guava:guava:19.0"
         compile "javax.servlet:javax.servlet-api:3.1.0"
