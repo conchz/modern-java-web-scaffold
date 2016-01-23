@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <context id="H2DB" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    <context id="MySQL" targetRuntime="MyBatis3Mapper" defaultModelType="flat">
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
@@ -24,7 +24,7 @@
         <sqlMapGenerator targetPackage="${sqlMapperPackage}" targetProject="${src_main_resources}"/>
 
         <table tableName="user">
-            <generatedKey column="id" sqlStatement="H2DB" identity="true"/>
+            <generatedKey column="id" sqlStatement="MySQL" identity="true"/>
         </table>
 
     </context>

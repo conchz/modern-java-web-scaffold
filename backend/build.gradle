@@ -21,6 +21,8 @@ apply plugin: 'us.kirchmeier.capsule'
 configurations {
     // Use logback-slf4j instead of the Spring's commons-logging
     all*.exclude group: 'commons-logging', module: 'commons-logging'
+
+    mybatisGenerator
 }
 
 ext {
@@ -41,6 +43,12 @@ flyway {
     locations = ["filesystem:db/migration"]
 }
 
+dependencies {
+    mybatisGenerator "mysql:mysql-connector-java:$mysqlDriverVersion"
+    mybatisGenerator "org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion"
+    mybatisGenerator "tk.mybatis:mapper:$mybatisMapperVersion"
+}
+
 task fatCapsule(type: FatCapsule) {
     applicationClass 'com.github.dolphineor.boot.WebAppBoot'
 
@@ -49,5 +57,38 @@ task fatCapsule(type: FatCapsule) {
     capsuleManifest {
         args = ['--very-fancy']
         minJavaVersion = '1.8'
+    }
+}
+
+task mybatisGenerate << {
+    ant.properties['targetProject'] = projectDir.path
+    ant.properties['driverClass'] = project['jdbc.driverClassName']
+    ant.properties['connectionURL'] = project['jdbc.url']
+    ant.properties['userId'] = project['jdbc.user']
+    ant.properties['password'] = project['jdbc.pass']
+    ant.properties['src_main_java'] = sourceSets.main.java.srcDirs[0].path
+    ant.properties['src_main_resources'] = sourceSets.main.resources.srcDirs[0].path
+    ant.properties['modelPackage'] = this.modelPackage
+    ant.properties['mapperPackage'] = this.mapperPackage
+    ant.properties['sqlMapperPackage'] = this.sqlMapperPackage
+
+    ant.taskdef(
+            name: 'mbgenerator',
+            classname: 'org.mybatis.generator.ant.GeneratorAntTask',
+            classpath: configurations.mybatisGenerator.asPath
+    )
+    ant.mbgenerator(overwrite: true, configfile: 'db/generatorConfig.xml', verbose: true) {
+        propertyset {
+            propertyref(name: 'targetProject')
+            propertyref(name: 'userId')
+            propertyref(name: 'driverClass')
+            propertyref(name: 'connectionURL')
+            propertyref(name: 'password')
+            propertyref(name: 'src_main_java')
+            propertyref(name: 'src_main_resources')
+            propertyref(name: 'modelPackage')
+            propertyref(name: 'mapperPackage')
+            propertyref(name: 'sqlMapperPackage')
+        }
     }
 }

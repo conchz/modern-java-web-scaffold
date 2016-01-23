@@ -1,5 +1,7 @@
 package com.github.dolphineor.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -7,28 +9,24 @@ import java.util.Date;
  *
  * @author dolphineor
  */
-public class UserEntity {
+@Table(name = "USER")
+public class UserEntity extends AbstractId {
 
-    private String id;
-
+    @Column(columnDefinition = "VARCHAR(50)", unique = true, nullable = false)
     private String username;
 
+    @Column(columnDefinition = "VARCHAR(50)", nullable = false)
     private String password;
 
-    private boolean isValid;
+    @Column(columnDefinition = "TINYINT(1)")
+    private boolean state;
 
+    @Column(columnDefinition = "DATE")
     private Date birthday;
 
+    @Column(columnDefinition = "VARCHAR(50)", nullable = false)
     private String email;
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -46,12 +44,12 @@ public class UserEntity {
         this.password = password;
     }
 
-    public boolean isValid() {
-        return isValid;
+    public boolean getState() {
+        return state;
     }
 
-    public void setValid(boolean valid) {
-        isValid = valid;
+    public void setState(boolean state) {
+        this.state = state;
     }
 
     public Date getBirthday() {

@@ -1,12 +1,12 @@
 DROP TABLE IF EXISTS `USER`;
 
 CREATE TABLE `USER` (
-  `id`       CHAR(32)    NOT NULL DEFAULT upper(replace(uuid(), '-', '')),
+  `id`       CHAR(32)    NOT NULL,
   `username` VARCHAR(50) NOT NULL,
   `password` VARCHAR(50) NOT NULL,
-  `isValid`  TINYINT(1)           DEFAULT 1,
-  `birthday` DATE                 DEFAULT now(),
-  `email`    VARCHAR(50)          DEFAULT NULL,
+  `state`    TINYINT(1) DEFAULT 1,
+  `birthday` DATE,
+  `email`    VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
