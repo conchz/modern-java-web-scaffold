@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping(path = "/api")
-public abstract class ApiBaseController {
+public class ApiBaseController {
 
     @RequestMapping(path = {"", "/"}, method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public final String api(HttpServletResponse response) {

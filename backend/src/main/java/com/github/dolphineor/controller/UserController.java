@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Scope("prototype")
-public class UserController extends ApiBaseController {
+@RequestMapping("/api/user")
+public class UserController {
 
-    @RequestMapping(path = "/user/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(path = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String getAllUser() {
-        return "";
+        return "Hello, World!";
     }
 }
