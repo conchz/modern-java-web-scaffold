@@ -23,7 +23,7 @@
         <javaModelGenerator targetPackage="${modelPackage}" targetProject="${src_main_java}"/>
         <sqlMapGenerator targetPackage="${sqlMapperPackage}" targetProject="${src_main_resources}"/>
 
-        <table tableName="user">
+        <table tableName="USER">
             <generatedKey column="id" sqlStatement="MySQL" identity="true"/>
         </table>
 
