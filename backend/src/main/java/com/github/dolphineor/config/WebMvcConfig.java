@@ -12,6 +12,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -70,6 +71,16 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         // 解决Spring3.1以上版本返回JSON时中文显示乱码问题
         converters.addAll(Lists.newArrayList(stringHttpMessageConverter(), jackson2HttpMessageConverter()));
-        super.configureMessageConverters(converters);
+    }
+
+    // Support Cross-site HTTP request
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
+                .allowedHeaders("X-Requested-With", "Content-Type", "Accept", "Authorization")
+                .allowCredentials(true)
+                .maxAge(3600);
     }
 }
