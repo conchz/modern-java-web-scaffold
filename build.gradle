@@ -47,9 +47,9 @@ project(':backend') {
         compile "tk.mybatis:mapper:$mybatisMapperVersion"   // MyBatis3 Mapper(http://www.mybatis.tk/)
         compile "mysql:mysql-connector-java:$mysqlDriverVersion"
         compile "com.zaxxer:HikariCP:2.4.3"
-        compile "com.auth0:java-jwt:2.1.0"
         compile "com.alibaba:fastjson:1.2.7"
         compile "com.google.guava:guava:19.0"
+        compile "io.jsonwebtoken:jjwt:0.6.0"
         compile "javax.servlet:javax.servlet-api:3.1.0"
 
         // For Spring Dependencies

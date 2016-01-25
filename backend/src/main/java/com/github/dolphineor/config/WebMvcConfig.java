@@ -19,8 +19,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static com.github.dolphineor.web.http.HttpMethods.*;
-
 /**
  * Created on 2016-01-19.
  *
@@ -80,7 +78,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 .allowedOrigins("*")
-                .allowedMethods(GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH")
                 .allowedHeaders("X-Requested-With", "Content-Type", "Accept", "Authorization")
                 .allowCredentials(true)
                 .maxAge(3600);

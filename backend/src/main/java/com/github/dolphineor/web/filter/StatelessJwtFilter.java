@@ -1,5 +1,8 @@
 package com.github.dolphineor.web.filter;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -10,7 +13,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * Created by dolphineor on 2016-01-25.
+ * Created on 2016-01-25.
  *
  * @author dolphineor
  */
@@ -22,16 +25,25 @@ public class StatelessJwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        filterChain.doFilter(request, response);
 
-//        final String authHeader = request.getHeader("Authorization");
-//        if (Objects.isNull(authHeader) || !authHeader.startsWith("Bearer ")) {
-//            throw new ServletException("Missing or invalid Authorization header.");
-//        }
-//
-//        if (Objects.equals("/api/user/logout", request.getRequestURI())) {
-//            filterChain.doFilter(request, response);
-//            return;
-//        }
+
+        final String authHeader = request.getHeader("Authorization");
+        if (Objects.isNull(authHeader) || !authHeader.startsWith("Bearer ")) {
+            throw new ServletException("Missing or invalid Authorization header.");
+        }
+
+
+        final String token = authHeader.substring(7);
+
+        try {
+            final Claims claims = Jwts.parser()
+                    .setSigningKey("secretkey")
+                    .parseClaimsJws(token).getBody();
+            request.setAttribute("claims", claims);
+        } catch (final JwtException e) {
+            throw new ServletException("Invalid token.");
+        }
+
+        filterChain.doFilter(request, response);
     }
 }
