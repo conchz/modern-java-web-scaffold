@@ -2,6 +2,7 @@ package com.github.dolphineor.web;
 
 import com.github.dolphineor.config.RootConfig;
 import com.github.dolphineor.config.WebMvcConfig;
+import com.github.dolphineor.web.filter.StatelessJwtFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.ContextLoaderListener;
@@ -50,6 +51,10 @@ public class WebAppServletContainerInitializer implements ServletContainerInitia
         encodingFilterRegistration.setInitParameter("encoding", "UTF-8");
         encodingFilterRegistration.setInitParameter("forceEncoding", "true");
         encodingFilterRegistration.addMappingForUrlPatterns(null, true, "/*");
+
+        FilterRegistration.Dynamic statelessJwtFilterRegistration =
+                servletContext.addFilter("statelessJwtFilter", new StatelessJwtFilter());
+        statelessJwtFilterRegistration.addMappingForUrlPatterns(null, true, "/*");
 
 
         Set<String> mappingConflicts = appServlet.addMapping("/");

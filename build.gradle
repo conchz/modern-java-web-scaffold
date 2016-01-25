@@ -28,7 +28,6 @@ project(':backend') {
         jacksonVersion = '2.7.0'
         aspectjVersion = '1.8.8'
         springVersion = '4.2.4.RELEASE'
-        shiroSpringVersion = '1.2.4'
         mysqlDriverVersion = '5.1.38'
         mybatisVersion = '3.3.0'
         mybatisSpringVersion = '1.2.3'
@@ -46,7 +45,6 @@ project(':backend') {
         compile "org.mybatis:mybatis:$mybatisVersion"
         compile "org.mybatis:mybatis-spring:$mybatisSpringVersion"
         compile "tk.mybatis:mapper:$mybatisMapperVersion"   // MyBatis3 Mapper(http://www.mybatis.tk/)
-        compile "org.apache.shiro:shiro-spring:$shiroSpringVersion"
         compile "mysql:mysql-connector-java:$mysqlDriverVersion"
         compile "com.zaxxer:HikariCP:2.4.3"
         compile "com.auth0:java-jwt:2.1.0"
