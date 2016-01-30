@@ -21,7 +21,7 @@ import org.springframework.core.io.Resource;
 )
 public class RootConfig {
 
-    private static Resource[] propertyLocations = {new ClassPathResource("jdbc-h2.properties")};
+    private static Resource[] propertyLocations = {new ClassPathResource("jdbc-mysql.properties")};
 
 
     // 加载*.properties文件

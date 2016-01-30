@@ -9,4 +9,9 @@
         <result column="birthday" jdbcType="DATE" property="birthday"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
     </resultMap>
+
+    <insert id="createUser" parameterType="com.github.dolphineor.model.entity.UserEntity" useGeneratedKeys="true">
+        INSERT INTO USER(username, password, state, birthday, email)
+        VALUES (#${username}, #${password}, #${state}, #${birthday}, #${email})
+    </insert>
 </mapper>

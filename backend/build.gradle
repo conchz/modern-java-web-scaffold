@@ -19,16 +19,29 @@ apply plugin: 'org.flywaydb.flyway'
 apply plugin: 'us.kirchmeier.capsule'
 
 configurations {
+    provided
+
     // Use logback-slf4j instead of the Spring's commons-logging
     all*.exclude group: 'commons-logging', module: 'commons-logging'
 
     mybatisGenerator
 }
 
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+        runtimeClasspath += configurations.provided
+    }
+    test {
+        compileClasspath += configurations.provided
+        runtimeClasspath += configurations.provided
+    }
+}
+
 ext {
 
     def props = new Properties();
-    file("src/main/resources/jdbc-h2.properties").withInputStream {
+    file("src/main/resources/jdbc-mysql.properties").withInputStream {
         props.load(it)
     }
     props.each {
@@ -44,6 +57,8 @@ flyway {
 }
 
 dependencies {
+    provided "javax.servlet:javax.servlet-api:3.1.0"
+
     mybatisGenerator "mysql:mysql-connector-java:$mysqlDriverVersion"
     mybatisGenerator "org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion"
     mybatisGenerator "tk.mybatis:mapper:$mybatisMapperVersion"

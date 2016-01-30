@@ -29,7 +29,7 @@ public class StatelessJwtFilter extends OncePerRequestFilter {
 
         final String authHeader = request.getHeader("Authorization");
         if (Objects.isNull(authHeader) || !authHeader.startsWith("Bearer ")) {
-            throw new ServletException("Missing or invalid Authorization header.");
+            throw new JwtException("Missing or invalid Authorization header.");
         }
 
 
@@ -40,8 +40,8 @@ public class StatelessJwtFilter extends OncePerRequestFilter {
                     .setSigningKey("secretkey")
                     .parseClaimsJws(token).getBody();
             request.setAttribute("claims", claims);
-        } catch (final JwtException e) {
-            throw new ServletException("Invalid token.");
+        } catch (JwtException e) {
+            throw new JwtException("Invalid token.");
         }
 
         filterChain.doFilter(request, response);
