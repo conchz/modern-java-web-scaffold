@@ -2,12 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Akka Http with Vue</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>modern-java-web-scaffold</title>
 
-    <link rel="stylesheet" type="text/css" href="css/all-the-things.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/all-the-things.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body class="blue-gradient-background">
 <div class="navbar navbar-inverse navbar-default" role="navigation">
@@ -15,7 +17,7 @@
         <div class="navbar-header">
             <div class="navbar-brand">
                 <a href="/">
-                    <img class="full-logo" src="img/pusher-logo.png" width="111" height="37"/>
+                    <img class="full-logo" src="img/pusher-logo.png"/>
                 </a>
             </div>
         </div>
@@ -33,6 +35,8 @@
 <div id="app">
     <app-component></app-component>
 </div>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script><!-- Only for Bootstrap dependency -->
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bundle.js"></script>
 </body>
 </html>
