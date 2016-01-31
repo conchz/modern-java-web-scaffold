@@ -1,5 +1,7 @@
+.DS_Store
+
 bundle.js
-*.log
+npm-debug.log
 
 # Runtime data
 pids
@@ -12,5 +14,5 @@ lib-cov
 build/
 dist/
 
-# Dependency directory
+# Dependencies directory
 node_modules/
