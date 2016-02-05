@@ -8,12 +8,14 @@ Vue.use(VueResource);
 
 import AppComponent from './components/app-component/app-component';
 
-new Vue({
+let app = new Vue({
     el: '#app',
     components: {
         'app-component': AppComponent
     },
-    data: {},
+    data: {
+        currentView: 'home'
+    },
     http: {
         root: '/api',
         headers: {
