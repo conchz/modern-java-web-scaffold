@@ -1,4 +1,4 @@
-package com.github.dolphineor.controller;
+package org.dandelion.controller;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.MediaType;

@@ -45,11 +45,11 @@
     </bean>
 
     <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.github.dolphineor.model.dao"/>
+        <property name="basePackage" value="org.dandelion.model.dao"/>
     </bean>-->
 
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.github.dolphineor.model.dao,com.github.dolphineor.model.mapper"/>
+        <property name="basePackage" value="org.dandelion.model.dao,org.dandelion.model.mapper"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

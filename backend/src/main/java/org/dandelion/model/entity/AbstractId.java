@@ -1,4 +1,4 @@
-package com.github.dolphineor.model.entity;
+package org.dandelion.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

@@ -1,7 +1,7 @@
-package com.github.dolphineor.service.impl;
+package org.dandelion.service.impl;
 
-import com.github.dolphineor.model.dao.UserDAO;
-import com.github.dolphineor.service.UserService;
+import org.dandelion.model.dao.UserDAO;
+import org.dandelion.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

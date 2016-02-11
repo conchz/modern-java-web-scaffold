@@ -1,4 +1,4 @@
-package com.github.dolphineor.config;
+package org.dandelion.config;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.*;

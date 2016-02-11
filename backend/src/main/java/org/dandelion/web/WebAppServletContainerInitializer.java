@@ -1,8 +1,8 @@
-package com.github.dolphineor.web;
+package org.dandelion.web;
 
-import com.github.dolphineor.config.RootConfig;
-import com.github.dolphineor.config.WebMvcConfig;
-import com.github.dolphineor.web.filter.StatelessJwtFilter;
+import org.dandelion.config.RootConfig;
+import org.dandelion.config.WebMvcConfig;
+import org.dandelion.web.filter.StatelessJwtFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.ContextLoaderListener;

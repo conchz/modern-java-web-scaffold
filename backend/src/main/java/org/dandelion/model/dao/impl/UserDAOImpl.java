@@ -1,8 +1,8 @@
-package com.github.dolphineor.model.dao.impl;
+package org.dandelion.model.dao.impl;
 
-import com.github.dolphineor.model.dao.UserDAO;
-import com.github.dolphineor.model.entity.UserEntity;
 import org.apache.ibatis.session.SqlSession;
+import org.dandelion.model.dao.UserDAO;
+import org.dandelion.model.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;

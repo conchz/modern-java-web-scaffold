@@ -1,5 +1,3 @@
-const path = require('path');
-
 let VueLoader = require('vue-loader'), ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -7,16 +5,16 @@ module.exports = {
         main: './app/main.js'
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: './dist/',
         filename: '[name].bundle.js',
-        publicPath: './dist/'
+        publicPath: './lib/'
     },
     module: {
         loaders: [
             {
                 test: /\.vue$/,
                 loader: VueLoader.withLoaders({
-                    sass:  ExtractTextPlugin.extract('css!sass')
+                    sass: ExtractTextPlugin.extract('css!sass')
                 })
             },
             {
@@ -27,11 +25,11 @@ module.exports = {
                     presets: ['es2015']
                 }
             },
-	    {
+            {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             },
-	    {
+            {
                 test: /\.(jpeg|jpg|png|svg)$/,
                 loader: 'url?limit=8192'
             },
@@ -44,7 +42,7 @@ module.exports = {
     resolve: {
         extensions: ['', '.js', '.vue']
     },
-    plugins: {
+    plugins: [
         new ExtractTextPlugin('styles.css')
-    }
+    ]
 };

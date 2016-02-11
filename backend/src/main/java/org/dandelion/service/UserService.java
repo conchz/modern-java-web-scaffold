@@ -1,4 +1,4 @@
-package com.github.dolphineor.service;
+package org.dandelion.service;
 
 /**
  * Created on 2016-01-18.

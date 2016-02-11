@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.dolphineor.model.mapper.UerMapper">
-    <resultMap id="BaseResultMap" type="com.github.dolphineor.model.entity.UserEntity">
+<mapper namespace="org.dandelion.model.mapper.UerMapper">
+    <resultMap id="BaseResultMap" type="org.dandelion.model.entity.UserEntity">
         <id column="id" jdbcType="CHAR" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -10,7 +10,7 @@
         <result column="email" jdbcType="VARCHAR" property="email"/>
     </resultMap>
 
-    <insert id="createUser" parameterType="com.github.dolphineor.model.entity.UserEntity" useGeneratedKeys="true">
+    <insert id="createUser" parameterType="org.dandelion.model.entity.UserEntity" useGeneratedKeys="true">
         INSERT INTO USER(username, password, state, birthday, email)
         VALUES (#${username}, #${password}, #${state}, #${birthday}, #${email})
     </insert>

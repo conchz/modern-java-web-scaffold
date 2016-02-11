@@ -1,4 +1,4 @@
-group 'com.github.dolphineor'
+group 'org.dandelion'
 version '0.1.0-SNAPSHOT'
 
 buildscript {
@@ -65,7 +65,7 @@ dependencies {
 }
 
 task fatCapsule(type: FatCapsule) {
-    applicationClass 'com.github.dolphineor.boot.WebAppBoot'
+    applicationClass 'org.dandelion.boot.WebAppBoot'
 
     baseName = rootProject.name
 

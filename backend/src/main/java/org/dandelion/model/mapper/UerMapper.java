@@ -1,6 +1,6 @@
-package com.github.dolphineor.model.mapper;
+package org.dandelion.model.mapper;
 
-import com.github.dolphineor.model.entity.UserEntity;
+import org.dandelion.model.entity.UserEntity;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
 
