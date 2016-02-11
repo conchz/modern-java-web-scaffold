@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.github.dolphineor.controller",
+@ComponentScan(basePackages = "org.dandelion.controller",
         includeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.stereotype.Controller.class),
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.web.bind.annotation.RestController.class)
