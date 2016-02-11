@@ -13,7 +13,7 @@ import org.springframework.core.io.Resource;
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @ImportResource(locations = {"classpath:spring-mybatis.xml"})
-@ComponentScan(basePackages = {"com.github.dolphineor.service"},
+@ComponentScan(basePackages = {"org.dandelion.service"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.stereotype.Repository.class),
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.stereotype.Controller.class),
