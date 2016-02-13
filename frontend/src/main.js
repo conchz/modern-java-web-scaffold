@@ -5,7 +5,7 @@ import VueStrap from 'vue-strap';
 
 Vue.config.debug = true;
 Vue.use(VueResource);
-Vue.use(VueRouter);
+//Vue.use(VueRouter);
 Vue.use(VueStrap);
 
 import HomeComponent from './components/home/Home';
@@ -13,10 +13,7 @@ import HomeComponent from './components/home/Home';
 let app = new Vue({
     el: '#app',
     components: {
-        'home': HomeComponent
-    },
-    data: {
-        currentView: 'home'
+        "app-component": HomeComponent
     },
     http: {
         root: '/api',

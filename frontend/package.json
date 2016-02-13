@@ -2,7 +2,6 @@
   "name": "modern-java-web-scaffold",
   "version": "0.1.0-SNAPSHOT",
   "description": "A Vue.js project",
-  "main": "src/main.js",
   "scripts": {
     "build": "webpack --mode=build",
     "start": "live-server --port=8001",
@@ -41,6 +40,7 @@
     "webpack": "^1.12.12"
   },
   "dependencies": {
+    "babel-runtime": "^6.3.19",
     "vue": "^1.0.16",
     "vue-resource": "^0.7.0",
     "vue-router": "^0.7.11",

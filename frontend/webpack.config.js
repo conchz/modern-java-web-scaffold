@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 var vue = require('vue-loader');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -5,7 +6,6 @@ module.exports = {
     entry: {
         main: './src/main.js'
     },
-    devtool: 'source-map',
     output: {
         path: './dist',
         filename: '[name].bundle.js'
@@ -58,3 +58,22 @@ module.exports = {
         }
     }
 };
+
+if (process.env.NODE_ENV === 'production') {
+    // http://vuejs.github.io/vue-loader/workflow/production.html
+    module.exports.plugins = (module.exports.plugins || []).concat([
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.optimize.OccurenceOrderPlugin()
+    ])
+} else {
+    module.exports.devtool = 'source-map'
+}
