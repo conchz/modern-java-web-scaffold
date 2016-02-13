@@ -5,6 +5,8 @@ import VueStrap from 'vue-strap';
 
 Vue.config.debug = true;
 Vue.use(VueResource);
+Vue.use(VueRouter);
+Vue.use(VueStrap);
 
 import HomeComponent from './components/home/Home';
 
