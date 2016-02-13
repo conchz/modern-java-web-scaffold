@@ -6,12 +6,12 @@ import VueStrap from 'vue-strap';
 Vue.config.debug = true;
 Vue.use(VueResource);
 
-import AppComponent from './components/app-component/app-component';
+import HomeComponent from './components/home/Home';
 
 let app = new Vue({
     el: '#app',
     components: {
-        'app-component': AppComponent
+        'home': HomeComponent
     },
     data: {
         currentView: 'home'

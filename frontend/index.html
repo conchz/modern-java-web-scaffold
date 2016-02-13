@@ -10,13 +10,13 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-<div>
-    <h3>Hello, Welcome to <a href="https://github.com/vuejs/vue" target="_blank">Vue</a></h3>
-</div>
-
 <div id="app">
-    <app-component :is="currentView"></app-component>
+    <div class="nav">
+        <a href="#signIn">登录</a>
+        <a href="#signUp">注册</a>
+    </div>
+    <app-component is="{{currentView}}"></app-component>
 </div>
-<script src="./lib/main.bundle.js"></script>
+<script src="dist/main.bundle.js"></script>
 </body>
 </html>

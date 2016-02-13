@@ -1,36 +1,49 @@
 {
-  "name": "modern-java-web-scaffold-frontend",
+  "name": "modern-java-web-scaffold",
   "version": "0.1.0-SNAPSHOT",
   "description": "A Vue.js project",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
+    "build": "webpack --mode=build",
     "start": "live-server --port=8001",
     "watch": "webpack -w"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolphineor/modern-java-web-scaffold.git"
+  },
   "keywords": [
     "vue",
-    "webpack"
+    "webpack",
+    "es6"
   ],
   "author": "Zongzhi Bai <dolphineor@gmail.com> (https://github.com/dolphineor)",
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://github.com/dolphineor/modern-java-web-scaffold/tree/master/frontend",
   "devDependencies": {
-    "babel-core": "^6.4.5",
-    "babel-loader": "^6.2.1",
-    "babel-preset-es2015": "^6.3.13",
+    "babel-core": "^6.5.1",
+    "babel-loader": "^6.2.2",
+    "babel-plugin-transform-runtime": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-runtime": "^6.3.19",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
+    "node-sass": "^3.4.2",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "vue-loader": "^8.1.1",
+    "vue-hot-reload-api": "^1.3.2",
+    "vue-html-loader": "^1.1.0",
+    "vue-style-loader": "^1.0.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "live-server": "^0.9.1",
     "webpack": "^1.12.12"
   },
   "dependencies": {
-    "babel-runtime": "^6.3.19",
     "vue": "^1.0.16",
     "vue-resource": "^0.7.0",
-    "vue-router": "^0.7.10",
+    "vue-router": "^0.7.11",
     "vue-strap": "^1.0.7"
   }
 }
