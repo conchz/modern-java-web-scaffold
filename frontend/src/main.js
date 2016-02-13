@@ -1,20 +1,16 @@
-import Vue from 'vue';
-import VueResource from 'vue-resource';
-import VueRouter from 'vue-router';
-import VueStrap from 'vue-strap';
+import styles from './css/styles.css'
+
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
+import * as VueStrap from 'vue-strap'
+
+import app from './app'
+import { configRouter } from './routers'
 
 Vue.config.debug = true;
-Vue.use(VueResource);
-//Vue.use(VueRouter);
-Vue.use(VueStrap);
 
-import HomeComponent from './components/home/Home';
-
-let app = new Vue({
-    el: '#app',
-    components: {
-        "app-component": HomeComponent
-    },
+const frontendApp = new Vue({
     http: {
         root: '/api',
         headers: {
@@ -26,3 +22,16 @@ let app = new Vue({
         }
     }
 });
+
+Vue.use(VueResource);
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    hashbang: false,
+    history: true,
+    saveScrollPosition: true
+});
+
+configRouter(router);
+
+router.start(Vue.extend(app), '#app');

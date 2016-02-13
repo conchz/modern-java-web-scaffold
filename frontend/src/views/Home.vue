@@ -1,10 +1,9 @@
 <template>
-    <div class="nav">
-        <a href="#signIn">登录</a>
-        <a href="#signUp">注册</a>
-    </div>
     <div>
         <h3>Message: {{msg}}</h3>
+        <input v-model="msg">
+        <br>
+        <button @click="greet">Greet</button>
     </div>
 </template>
 
@@ -15,6 +14,10 @@
                 msg: 'Hello, welcome to use Vue!'
             }
         },
-        methods: {}
+        methods: {
+            greet: function (event) {
+                alert(event.target.tagName)
+            }
+        }
     }
 </script>
