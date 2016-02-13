@@ -3,7 +3,7 @@
 </div>
 
 <script>
-    export default{
+    export default {
         data() {
             return {
                 msg: 'Hello, welcome to use Vue!'
