@@ -1,7 +1,0 @@
-#!/bin/bash
-
-cd ../../
-./gradlew :frontend:npm_install npmBuild
-
-cd frontend
-npm run deploy
