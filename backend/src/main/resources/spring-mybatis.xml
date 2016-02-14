@@ -72,7 +72,7 @@
     <aop:aspectj-autoproxy/>
 
     <aop:config>
-        <aop:pointcut id="appService" expression="execution(* com.github.dolphineor.service..*Service*.*(..))"/>
+        <aop:pointcut id="appService" expression="execution(* org.dandelion.service..*Service*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="appService"/>
     </aop:config>
 
