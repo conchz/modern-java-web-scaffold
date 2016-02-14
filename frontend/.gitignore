@@ -1,6 +1,7 @@
 .DS_Store
 
 *.bundle.js
+*.json.gzip
 npm-debug.log
 
 # Runtime data
