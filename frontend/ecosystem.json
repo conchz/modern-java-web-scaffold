@@ -1,0 +1,45 @@
+{
+  "apps": [
+    {
+      "name": "API",
+      "script": "app.js",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    },
+    {
+      "name": "WEB",
+      "script": "web.js"
+    }
+  ],
+  "deploy": {
+    "production": {
+      "user": "node",
+      "host": [
+        "0.0.0.0"
+      ],
+      "ref": "origin/master",
+      "repo": "git@github.com:dolphineor/modern-java-web-scaffold.git",
+      "path": "/var/www/production",
+      "pre-deploy-local": "echo 'This is a local executed command'",
+      "post-deploy": "npm install ; pm2 startOrRestart ecosystem.json --env production",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "staging": {
+      "user": "node",
+      "host": "0.0.0.0",
+      "ref": "origin/master",
+      "repo": "git@github.com:dolphineor/modern-java-web-scaffold.git",
+      "path": "/var/www/development",
+      "post-deploy": "pm2 startOrRestart ecosystem.json --env dev",
+      "env": {
+        "NODE_ENV": "staging"
+      }
+    }
+  }
+}
