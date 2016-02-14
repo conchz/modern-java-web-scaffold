@@ -41,10 +41,10 @@ task npmRunWithDev(type: NpmTask) {
     args = ['run', 'dev']
 }
 
-task npmDeploy(type: NpmTask) {
-    args = ['run', 'deploy']
+task npmDeploy(type: Exec) {
+    workingDir './bin'
+    commandLine 'pm2', 'start', 'deploy', '--name', 'dandelion-frontend'
 }
 
 npm_install.dependsOn(npm_cache_clean)
-npmDeploy.dependsOn(npmBuild)
 npmRunWithDev.dependsOn(npmBuild)
