@@ -3,8 +3,9 @@
   "version": "0.1.0-SNAPSHOT",
   "description": "A Vue.js project",
   "scripts": {
-    "build": "webpack --mode=build",
-    "start": "webpack-dev-server --host 0.0.0.0 --port 8001",
+    "build": "webpack",
+    "dev": "webpack-dev-server --host 0.0.0.0 --port 8001 --hot --colors",
+    "start": "webpack-dev-server --host 0.0.0.0 --port 8000",
     "watch": "webpack -w"
   },
   "repository": {
@@ -24,7 +25,6 @@
     "babel-loader": "^6.2.2",
     "babel-plugin-transform-runtime": "^6.5.2",
     "babel-preset-es2015": "^6.5.0",
-    "babel-runtime": "^6.3.19",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
     "node-sass": "^3.4.2",
@@ -40,7 +40,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "babel-runtime": "^6.3.19",
+    "babel-runtime": "^5.8.0",
     "bootstrap": "^3.3.6",
     "vue": "^1.0.16",
     "vue-resource": "^0.7.0",

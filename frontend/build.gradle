@@ -33,4 +33,18 @@ node {
     nodeModulesDir = file("${project.projectDir}")
 }
 
+task npmBuild(type: NpmTask) {
+    args = ['run', 'build']
+}
+
+task npmStart(type: NpmTask) {
+    args = ['run', 'start']
+}
+
+task npmStartWithDev(type: NpmTask) {
+    args = ['run', 'dev']
+}
+
 npm_install.dependsOn(npm_cache_clean)
+npmStart.dependsOn(npmBuild)
+npmStartWithDev.dependsOn(npmBuild)

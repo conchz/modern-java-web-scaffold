@@ -5,4 +5,4 @@ before_install:
   - chmod +x gradlew
 script:
   - ./gradlew :backend:clean fatCapsule
-  - ./gradlew :frontend:npm_install
+  - ./gradlew :frontend:npm_install npmBuild
