@@ -45,9 +45,5 @@ task npmRunWithDev(type: NpmTask) {
     args = ['run', 'dev']
 }
 
-task npmRunWithProd(type: NpmTask) {
-    args = ['run', 'prod']
-}
-
 npm_install.dependsOn(npm_cache_clean)
 npmRunWithDev.dependsOn(npmBuild)

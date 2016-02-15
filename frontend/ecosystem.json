@@ -1,7 +1,7 @@
 {
   "apps": {
     "name": "MJWS-Frontend",
-    "script": "./src/main.js",
+    "script": "app.js",
     "env": {
       "COMMON_VARIABLE": "true"
     },
