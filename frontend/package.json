@@ -4,8 +4,9 @@
   "description": "A Vue.js project",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --host 0.0.0.0 --port 8001 --hot --colors",
+    "dev": "webpack-dev-server --host 0.0.0.0 --port 8000 --hot --colors",
     "deploy": "NODE_ENV=production webpack -p --config webpack.config.js",
+    "prod": "live-server --host=0.0.0.0 --port=8000 --no-browser --quiet",
     "watch": "webpack -w"
   },
   "repository": {
@@ -37,7 +38,8 @@
     "vue-style-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "webpack": "^1.12.13",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "live-server": "^0.9.1"
   },
   "dependencies": {
     "babel-runtime": "^5.8.0",
