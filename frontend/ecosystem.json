@@ -17,28 +17,28 @@
   ],
   "deploy": {
     "production": {
-      "user": "node",
+      "user": "root",
       "host": [
-        "0.0.0.0"
+        "10.116.75.148"
       ],
       "ref": "origin/master",
       "repo": "git@github.com:dolphineor/modern-java-web-scaffold.git",
       "path": "/var/www/production",
       "pre-deploy-local": "echo 'This is a local executed command'",
-      "post-deploy": "npm install ; pm2 startOrRestart ecosystem.json --env production",
+      "post-deploy": "npm run deploy; pm2 startOrRestart ecosystem.json --env production",
       "env": {
         "NODE_ENV": "production"
       }
     },
-    "staging": {
-      "user": "node",
-      "host": "0.0.0.0",
+    "dev": {
+      "user": "root",
+      "host": "127.0.0.1",
       "ref": "origin/master",
       "repo": "git@github.com:dolphineor/modern-java-web-scaffold.git",
       "path": "/var/www/development",
       "post-deploy": "pm2 startOrRestart ecosystem.json --env dev",
       "env": {
-        "NODE_ENV": "staging"
+        "NODE_ENV": "dev"
       }
     }
   }
