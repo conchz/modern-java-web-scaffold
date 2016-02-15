@@ -1,3 +1,5 @@
+'use strict';
+
 var webpack = require('webpack');
 var vue = require('vue-loader');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -8,6 +10,7 @@ module.exports = {
     },
     output: {
         path: './dist',
+        publicPath: '/assets/',
         filename: '[name].bundle.js'
     },
     module: {
@@ -39,15 +42,12 @@ module.exports = {
         extensions: ['', '.js', '.vue']
     },
     plugins: [
-        new ExtractTextPlugin('styles.css')
+        new ExtractTextPlugin('styles.css'),
+        new webpack.HotModuleReplacementPlugin()
     ],
     babel: {
-        "presets": [
-            "es2015"
-        ],
-        "plugins": [
-            "transform-runtime"
-        ],
+        presets: ["es2015"],
+        plugins: ["transform-runtime"],
         cacheDirectory: true
     },
     // Vue settings
