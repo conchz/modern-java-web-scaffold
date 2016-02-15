@@ -19,7 +19,7 @@
       "repo": "https://github.com/dolphineor/modern-java-web-scaffold.git",
       "path": "/var/www/production",
       "pre-deploy-local": "echo 'This is a local executed command'",
-      "post-deploy": "../gradlew :frontend:npm_install npmDeploy npmRunWithProd && pm2 startOrRestart ecosystem.json --env production",
+      "post-deploy": "gradle :frontend:npm_install npmDeploy && pm2 startOrRestart ecosystem.json --env production",
       "env": {
         "NODE_ENV": "production"
       }
@@ -30,7 +30,7 @@
       "ref": "origin/master",
       "repo": "https://github.com/dolphineor/modern-java-web-scaffold.git",
       "path": "/var/www/development",
-      "post-deploy": "../gradlew :frontend:npm_install npmBuild npmRunWithDev && pm2 startOrRestart ecosystem.json --env dev",
+      "post-deploy": "gradle :frontend:npm_install npmBuild && pm2 startOrRestart ecosystem.json --env dev",
       "env": {
         "NODE_ENV": "dev"
       }
