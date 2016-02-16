@@ -2,33 +2,21 @@
 
 "use strict";
 
-let http = require('http'),
-    finalhandler = require('finalhandler'),
-    argv = require('minimist')(process.argv.slice(2)),
-    serveIndex = require('serve-index'),
-    serveStatic = require('serve-static');
+let express = require('express');
+let app = express();
 
-const rootDir = argv._[0] || process.cwd();
 const PORT = 8000;
 
-let index = serveIndex(rootDir, {
-    icons: true,
-    hidden: true
+//if (process.env.NODE_ENV === 'production') {
+//    require('./webpack/webpack-prod.server.js')(app)
+//} else {
+//    require('./webpack/webpack-dev.server.js')(app)
+//}
+
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/index.html')
 });
 
-let serve = serveStatic(rootDir);
-
-let server = http.createServer((req, res) => {
-    let done = finalhandler(req, res);
-    serve(req, res, (err) => {
-        if (err) {
-            return done(err)
-        }
-
-        index(req, res, done)
-    })
-});
-
-server.listen(PORT, () => {
-    console.log('Server listening on: http://localhost:%s', PORT);
+app.listen(PORT, () => {
+    console.log('Server listening on: http://localhost:%s', PORT)
 });
