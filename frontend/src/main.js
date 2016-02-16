@@ -10,7 +10,7 @@ import { configRouter } from './routers'
 
 Vue.config.debug = true;
 
-const frontendApp = new Vue({
+let frontendApp = new Vue({
     http: {
         root: '/api',
         headers: {
@@ -26,10 +26,10 @@ const frontendApp = new Vue({
 Vue.use(VueResource);
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+let router = new VueRouter({
     hashbang: false,
     history: true,
-    saveScrollPosition: true
+    mode: 'html5'
 });
 
 configRouter(router);

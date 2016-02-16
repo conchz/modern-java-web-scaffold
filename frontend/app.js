@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-'use strict';
+"use strict";
 
-var http = require('http'),
+let http = require('http'),
     finalhandler = require('finalhandler'),
     argv = require('minimist')(process.argv.slice(2)),
     serveIndex = require('serve-index'),
@@ -11,23 +11,22 @@ var http = require('http'),
 const rootDir = argv._[0] || process.cwd();
 const PORT = 8000;
 
-var index = serveIndex(rootDir, {
+let index = serveIndex(rootDir, {
     icons: true,
     hidden: true
 });
 
-var serve = serveStatic(rootDir, {
-    index: './index.html'
-});
+let serve = serveStatic(rootDir);
 
-var server = http.createServer((request, response) => {
-    let done = finalhandler(request, response);
-    serve(request, response, (err) => {
+let server = http.createServer((req, res) => {
+    let done = finalhandler(req, res);
+    serve(req, res, (err) => {
         if (err) {
-            return done(err);
+            return done(err)
         }
-        index(request, response, done);
-    });
+
+        index(req, res, done)
+    })
 });
 
 server.listen(PORT, () => {

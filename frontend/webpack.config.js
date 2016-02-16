@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-var webpack = require('webpack');
-var vue = require('vue-loader');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+let webpack = require('webpack');
+let vue = require('vue-loader');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -42,8 +42,7 @@ module.exports = {
         extensions: ['', '.js', '.vue']
     },
     plugins: [
-        new ExtractTextPlugin('styles.css'),
-        new webpack.HotModuleReplacementPlugin()
+        new ExtractTextPlugin('styles.css')
     ],
     babel: {
         presets: ["es2015"],
@@ -75,5 +74,8 @@ if (process.env.NODE_ENV === 'production') {
         new webpack.optimize.OccurenceOrderPlugin()
     ])
 } else {
-    module.exports.devtool = 'source-map'
+    module.exports.devtool = 'source-map';
+    module.exports.plugins = (module.exports.plugins || []).concat([
+        new webpack.HotModuleReplacementPlugin()
+    ])
 }

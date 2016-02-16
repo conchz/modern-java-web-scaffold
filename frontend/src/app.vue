@@ -11,7 +11,7 @@
         <a v-link="{ path: '/signIn', exact: true }">登录</a>
         <a v-link="{ path: '/signUp', exact: true }">注册</a>
         <a v-link="{ path: '/about', exact: true }">关于</a>
-        <router-view class="view" transition="test" transition-mode="out-in" keep-alive></router-view>
+        <router-view class="view" transition="view" transition-mode="out-in" keep-alive></router-view>
     </div>
 </template>
 

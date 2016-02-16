@@ -4,7 +4,7 @@
   "description": "A Vue.js project",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --host 0.0.0.0 --port 8000 --hot --colors",
+    "dev": "webpack-dev-server --host 127.0.0.1 --port 8000 --inline --hot --colors --no-info",
     "deploy": "NODE_ENV=production webpack -p --config webpack.config.js",
     "watch": "webpack -w"
   },
