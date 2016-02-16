@@ -82,7 +82,7 @@ if (process.env.NODE_ENV === 'production') {
                 warnings: false
             }
         }),
-        new StatsPlugin('webpack.stats.json', {
+        new StatsWebpackPlugin('webpack.stats.json', {
             source: false,
             modules: false
         })
