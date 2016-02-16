@@ -1,1 +1,1 @@
-# modern-java-web-scaffold-frontend
+# MJWS-Frontend

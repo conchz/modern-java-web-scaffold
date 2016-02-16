@@ -37,13 +37,7 @@ task npmBuild(type: NpmTask) {
     args = ['run', 'build']
 }
 
-task npmDeploy(type: NpmTask) {
-    args = ['run', 'deploy']
-}
-
-task npmRunWithDev(type: NpmTask) {
-    args = ['run', 'dev']
+task npmDeploy(type: Exec) {
 }
 
 npm_install.dependsOn(npm_cache_clean)
-npmRunWithDev.dependsOn(npmBuild)

@@ -2,12 +2,12 @@
 
 "use strict";
 
-let path = require('path');
-let express = require('express');
-let webpack = require('webpack');
-let webpackMiddleware = require('webpack-dev-middleware');
-let webpackHotMiddleware = require('webpack-hot-middleware');
-let config = require('./webpack.config.js');
+const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const config = require('./webpack.config.js');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const port = isDev ? 8000 : process.env.PORT;
@@ -41,7 +41,7 @@ if (isDev) {
     });
 }
 
-app.listen(port, '0.0.0.0', function onStart(err) {
+app.listen(port, '0.0.0.0', (err) => {
     if (err) {
         console.log(err);
     }

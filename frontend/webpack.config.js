@@ -36,6 +36,10 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: 'style!css!sass'
+            },
+            {
+                test: /\.html$/,
+                loader: 'html'
             }
         ]
     },
@@ -44,9 +48,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html',
-            inject: 'body',
-            filename: 'index.html'
+            template: path.join(__dirname, '/index.html'),
+            inject: true,
+            filename: 'index.html',
+            favicon: path.join(__dirname, '/src/images/favicon.ico')
         }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new ExtractTextPlugin('styles.css'),
@@ -54,8 +59,7 @@ module.exports = {
     ],
     babel: {
         presets: ["es2015"],
-        plugins: ["transform-runtime"],
-        cacheDirectory: true
+        plugins: ["transform-runtime"]
     },
     vue: {
         loaders: {
