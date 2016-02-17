@@ -17,7 +17,7 @@
 * *[PM2](http://pm2.keymetrics.io/)*
 
 
-## Quickly start
+## Quick Start
 For backend application:
 Using *Undertow* as embedded web server and *Capsule* as Packaging and Deployment for JVM Applications. Executing command ``` gradle :backend:clean fatCapsule ``` to package a executable jar. In order to debug, you can directly run WebAppBoot.java.
 
