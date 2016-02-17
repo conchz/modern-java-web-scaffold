@@ -2,12 +2,12 @@
 
 "use strict";
 
-const path = require('path');
-const express = require('express');
-const webpack = require('webpack');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const config = require('./webpack.config.js');
+import path from 'path'
+import express from 'express'
+import webpack from 'webpack'
+import webpackMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import config from './webpack.config.js'
 
 const isDev = process.env.NODE_ENV !== 'production';
 const port = isDev ? 8000 : process.env.PORT;

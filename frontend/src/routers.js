@@ -1,8 +1,8 @@
-import HomeComponent from './views/home'
-import SignInComponent from './views/sign_in'
-import SignUpComponent from './views/sign_up'
-import AboutComponent from './views/about.vue'
-import NotFoundComponent from './views/not_found'
+import HomeComponent from './components/home'
+import SignInComponent from './components/sign_in'
+import SignUpComponent from './components/sign_up'
+import AboutComponent from './components/about.vue'
+import NotFoundComponent from './components/not_found'
 
 export function configRouter(router) {
     router.map({

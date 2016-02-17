@@ -49,18 +49,14 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, '/index.html'),
-            inject: true,
             filename: 'index.html',
+            title: 'modern-java-web-scaffold',
             favicon: path.join(__dirname, '/src/images/favicon.ico')
         }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new ExtractTextPlugin('styles.css'),
         new webpack.NoErrorsPlugin()
     ],
-    babel: {
-        presets: ["es2015"],
-        plugins: ["transform-runtime"]
-    },
     vue: {
         loaders: {
             css: ExtractTextPlugin.extract("css"),
@@ -93,7 +89,7 @@ if (process.env.NODE_ENV === 'production') {
     ])
 } else {
     module.exports.debug = true;
-    module.exports.devtool = 'eval-source-map';
+    module.exports.devtool = 'source-map';
     module.exports.entry = (module.exports.entry || []).concat([
         'webpack-hot-middleware/client?reload=true',
         path.join(__dirname, 'src/main.js')

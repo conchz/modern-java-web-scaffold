@@ -1,4 +1,4 @@
-import styles from './css/styles.css'
+import styles from './css/public.css'
 
 import Vue from 'vue'
 import VueResource from 'vue-resource'

@@ -1,10 +1,15 @@
 {
   "name": "modern-java-web-scaffold",
-  "version": "0.1.0-SNAPSHOT",
+  "version": "0.1.0",
   "description": "A Vue.js project",
   "main": "server.js",
+  "babel": {
+    "presets": ["es2015"],
+    "plugins": ["transform-runtime"]
+  },
   "scripts": {
-    "build": "rimraf dist && set NODE_ENV=production && webpack --profile --progress -p -c"
+    "start": "./node_modules/.bin/babel-node server",
+    "build": "rimraf dist && set NODE_ENV=production && webpack -p --profile --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -46,6 +51,7 @@
     "webpack-hot-middleware": "^2.7.1"
   },
   "dependencies": {
+    "babel-cli": "^6.5.1",
     "babel-runtime": "^5.8.0",
     "bootstrap": "^3.3.6",
     "vue": "^1.0.16",
