@@ -37,7 +37,11 @@ task npmBuild(type: NpmTask) {
     args = ['run', 'build']
 }
 
-task npmDeploy(type: Exec) {
+task npmRunWithDev(type: NpmTask) {
+    args = ['start']
+}
+
+task deployFrontendApp(type: Exec) {
 }
 
 npm_install.dependsOn(npm_cache_clean)

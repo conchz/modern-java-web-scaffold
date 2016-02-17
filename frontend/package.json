@@ -1,7 +1,7 @@
 {
   "name": "modern-java-web-scaffold",
   "version": "0.1.0",
-  "description": "A Vue.js project",
+  "description": "A Vue.js scaffold",
   "main": "server.js",
   "babel": {
     "presets": ["es2015"],
