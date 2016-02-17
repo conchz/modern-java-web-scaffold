@@ -43,6 +43,7 @@
     "vue-style-loader": "^1.0.0",
     "express": "^4.13.4",
     "rimraf": "^2.5.2",
+    "serve-favicon": "^2.3.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.8.2",
     "stats-webpack-plugin": "^0.3.0",

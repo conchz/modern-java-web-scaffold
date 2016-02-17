@@ -4,6 +4,7 @@
 
 import path from 'path'
 import express from 'express'
+import favicon from 'serve-favicon'
 import webpack from 'webpack'
 import webpackMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
@@ -30,16 +31,18 @@ if (isDev) {
 
     app.use(middleware);
     app.use(webpackHotMiddleware(compiler));
-    app.get('*', function response(req, res) {
+    app.get('*', (req, res) => {
         res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
         res.end();
     });
 } else {
     app.use(express.static(__dirname + '/dist'));
-    app.get('*', function response(req, res) {
+    app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'dist/index.html'));
     });
 }
+
+app.use(favicon(path.join(__dirname, 'src/images/favicon.ico')));
 
 app.listen(port, '0.0.0.0', (err) => {
     if (err) {

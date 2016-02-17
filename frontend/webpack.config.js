@@ -10,7 +10,7 @@ let StatsWebpackPlugin = require('stats-webpack-plugin');
 module.exports = {
     entry: [],
     output: {
-        path: path.join(__dirname, '/dist/'),
+        path: path.join(__dirname, 'dist'),
         publicPath: '/assets/',
         filename: '[name].bundle.js'
     },
@@ -48,13 +48,11 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, '/index.html'),
-            filename: 'index.html',
-            title: 'modern-java-web-scaffold',
-            favicon: path.join(__dirname, '/src/images/favicon.ico')
+            template: path.join(__dirname, 'index.html'),
+            filename: 'index.html'
         }),
-        new webpack.optimize.OccurenceOrderPlugin(),
         new ExtractTextPlugin('styles.css'),
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.NoErrorsPlugin()
     ],
     vue: {
