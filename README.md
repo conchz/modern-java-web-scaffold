@@ -1,7 +1,7 @@
 # modern-java-web-scaffold [![Build Status](https://travis-ci.org/dolphineor/modern-java-web-scaffold.svg?branch=master)](https://travis-ci.org/dolphineor/modern-java-web-scaffold)
 
 ## Introduction
-**modern-java-web-scaffold** is a scaffold of front end and back end to build modern web application, using *[Gradle](http://gradle.org/)* as build tool, integrated frequently used framework, being applicable to RESTFul architecture.
+**modern-java-web-scaffold** is a scaffold of front end and back end to build modern web application, using *[Gradle](http://gradle.org/)* as build tool, integrated frequently used framework, being applicable to RESTful architecture.
 
 ## Main Framework
 #### Backend
