@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/babel-node server",
-    "build": "rimraf dist && set NODE_ENV=production && webpack -p --profile --progress --colors"
+    "build": "rimraf dist && NODE_ENV=production && webpack -p --profile --progress --colors"
   },
   "repository": {
     "type": "git",

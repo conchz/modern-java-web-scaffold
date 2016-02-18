@@ -48,7 +48,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'index.html'),
+            template: path.join(__dirname, 'src/index.html'),
             filename: 'index.html'
         }),
         new ExtractTextPlugin('styles.css'),
@@ -57,6 +57,7 @@ module.exports = {
     ],
     vue: {
         loaders: {
+            js: 'babel',
             css: ExtractTextPlugin.extract("css"),
             sass: ExtractTextPlugin.extract('css!sass')
         }

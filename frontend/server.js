@@ -13,6 +13,9 @@ import config from './webpack.config.js'
 const isDev = process.env.NODE_ENV !== 'production';
 const port = isDev ? 8000 : process.env.PORT;
 const app = express();
+const configFavicon = (app) => {
+    app.use(favicon(path.join(__dirname, 'src/images/favicon.ico')))
+};
 
 if (isDev) {
     const compiler = webpack(config);
@@ -31,18 +34,18 @@ if (isDev) {
 
     app.use(middleware);
     app.use(webpackHotMiddleware(compiler));
+    configFavicon(app);
     app.get('*', (req, res) => {
         res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
         res.end();
     });
 } else {
     app.use(express.static(__dirname + '/dist'));
+    configFavicon(app);
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'dist/index.html'));
     });
 }
-
-app.use(favicon(path.join(__dirname, 'src/images/favicon.ico')));
 
 app.listen(port, '0.0.0.0', (err) => {
     if (err) {
