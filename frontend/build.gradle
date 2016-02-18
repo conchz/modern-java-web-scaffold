@@ -24,7 +24,7 @@ node {
 
     // If true, it will download node using above parameters.
     // If false, it will try to use globally installed node.
-    download = false
+    download = true
 
     // Set the work directory for unpacking node
     workDir = file("${project.buildDir}/nodejs")
