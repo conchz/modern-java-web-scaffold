@@ -25,12 +25,12 @@ project(':backend') {
 
         logbackVersion = '1.1.3'
         undertowVersion = '1.3.17.Final'
-        jacksonVersion = '2.7.0'
+        jacksonVersion = '2.7.1'
         aspectjVersion = '1.8.8'
         springVersion = '4.2.4.RELEASE'
         mysqlDriverVersion = '5.1.38'
-        mybatisVersion = '3.3.0'
-        mybatisSpringVersion = '1.2.3'
+        mybatisVersion = '3.3.1'
+        mybatisSpringVersion = '1.2.4'
         mybatisMapperVersion = '3.3.4'
         mybatisGeneratorVersion = '1.3.2'
     }
