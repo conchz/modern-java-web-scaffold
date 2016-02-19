@@ -1,11 +1,10 @@
 "use strict";
 
-let path = require('path');
-let webpack = require('webpack');
-let vue = require('vue-loader');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
-let StatsWebpackPlugin = require('stats-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const vue = require('vue-loader');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: [],
@@ -44,6 +43,7 @@ module.exports = {
         ]
     },
     resolve: {
+        root: path.join(__dirname, 'node_modules'),
         extensions: ['', '.js', '.vue']
     },
     plugins: [
@@ -63,42 +63,3 @@ module.exports = {
         }
     }
 };
-
-if (process.env.NODE_ENV === 'production') {
-    module.exports.entry = (module.exports.entry || []).concat([
-        path.join(__dirname, 'src/main.js')
-    ]);
-
-    // http://vuejs.github.io/vue-loader/workflow/production.html
-    module.exports.plugins = (module.exports.plugins || []).concat([
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: '"production"'
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
-        new StatsWebpackPlugin('webpack.stats.json', {
-            source: false,
-            modules: false
-        })
-    ])
-} else {
-    module.exports.debug = true;
-    module.exports.devtool = 'source-map';
-    module.exports.entry = (module.exports.entry || []).concat([
-        'webpack-hot-middleware/client?reload=true',
-        path.join(__dirname, 'src/main.js')
-    ]);
-    module.exports.plugins = (module.exports.plugins || []).concat([
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: '"development"'
-            }
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ])
-}

@@ -1,9 +1,10 @@
 'use strict';
 
-let path = require('path'),
+const path = require('path'),
     gulp = require('gulp'),
     gutil = require('gulp-util'),
     express = require('express'),
+    fallback = require('express-history-api-fallback'),
     webpack = require('webpack'),
     WebpackDevServer = require('webpack-dev-server'),
     webpackConfig = require('./webpack.config.js');
@@ -19,11 +20,13 @@ gulp.task("build", ["webpack:build"]);
 
 gulp.task("webpack:build", (callback) => {
     // modify some webpack config options
-    const myConfig = Object.create(webpackConfig);
-    myConfig.plugins = myConfig.plugins.concat(
+    const prodConfig = Object.create(webpackConfig);
+    prodConfig.entry = prodConfig.entry.concat(path.join(__dirname, "src/main.js"));
+    // http://vuejs.github.io/vue-loader/workflow/production.html
+    prodConfig.plugins = prodConfig.plugins.concat(
         new webpack.DefinePlugin({
             "process.env": {
-                "NODE_ENV": JSON.stringify("production")
+                "NODE_ENV": '"production"'
             }
         }),
         new webpack.optimize.DedupePlugin(),
@@ -31,7 +34,7 @@ gulp.task("webpack:build", (callback) => {
     );
 
     // run webpack
-    webpack(myConfig, (err, stats) => {
+    webpack(prodConfig, (err, stats) => {
         if (err) throw new gutil.PluginError("webpack:build", err);
         gutil.log("[webpack:build]", stats.toString({
             colors: true
@@ -40,16 +43,23 @@ gulp.task("webpack:build", (callback) => {
     });
 });
 
-let myDevConfig = Object.create(webpackConfig);
-myDevConfig.devtool = "source-map";
-myDevConfig.debug = true;
-myDevConfig.entry = myDevConfig.entry.concat(
+const devConfig = Object.create(webpackConfig);
+devConfig.devtool = "source-map";
+devConfig.debug = true;
+devConfig.entry = devConfig.entry.concat(
     "webpack-hot-middleware/client?reload=true",
     path.join(__dirname, "src/main.js")
 );
-myDevConfig.plugins = myDevConfig.plugins.concat();
+devConfig.plugins = devConfig.plugins.concat(
+    new webpack.DefinePlugin({
+        "process.env": {
+            NODE_ENV: '"development"'
+        }
+    }),
+    new webpack.HotModuleReplacementPlugin()
+);
 
-let devCompiler = webpack(myDevConfig);
+const devCompiler = webpack(devConfig);
 
 gulp.task("webpack:build-dev", function (callback) {
     // run webpack
@@ -64,13 +74,13 @@ gulp.task("webpack:build-dev", function (callback) {
 
 gulp.task("webpack-dev-server", (callback) => {
     // modify some webpack config options
-    var myConfig = Object.create(webpackConfig);
-    myConfig.devtool = "source-map";
-    myConfig.debug = true;
+    const devConfig = Object.create(webpackConfig);
+    devConfig.devtool = "source-map";
+    devConfig.debug = true;
 
-    // Start an webpack-dev-server
-    new WebpackDevServer(webpack(myConfig), {
-        publicPath: "/" + myConfig.output.publicPath,
+    // Start a webpack-dev-server
+    new WebpackDevServer(webpack(devConfig), {
+        publicPath: "/" + devConfig.output.publicPath,
         stats: {
             colors: true
         }
