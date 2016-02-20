@@ -39,7 +39,7 @@ if (isDev) {
     app.use(fallback('dist/index.html', {root: __dirname}));
     configFavicon(app);
     app.get('*', (req, res) => {
-        res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
+        res.write(devMiddleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
         res.end();
     });
 } else {
