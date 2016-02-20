@@ -7,7 +7,8 @@ const path = require('path'),
     fallback = require('express-history-api-fallback'),
     webpack = require('webpack'),
     WebpackDevServer = require('webpack-dev-server'),
-    webpackConfig = require('./webpack.config.js');
+    devConfig = require('./webpack.dev.config.js'),
+    prodConfig = require('./webpack.prod.config.js');
 
 gulp.task("default", ["webpack-dev-server"]);
 
@@ -18,68 +19,28 @@ gulp.task("build-dev", ["webpack:build-dev"], () => {
 // Production build
 gulp.task("build", ["webpack:build"]);
 
-gulp.task("webpack:build", (callback) => {
-    // modify some webpack config options
-    const prodConfig = Object.create(webpackConfig);
-    prodConfig.entry = prodConfig.entry.concat(path.join(__dirname, "src/main.js"));
-    // http://vuejs.github.io/vue-loader/workflow/production.html
-    prodConfig.plugins = prodConfig.plugins.concat(
-        new webpack.DefinePlugin({
-            "process.env": {
-                "NODE_ENV": '"production"'
-            }
-        }),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin()
-    );
-
-    // run webpack
-    webpack(prodConfig, (err, stats) => {
+gulp.task("webpack:build", (cb) => {
+    webpack(Object.create(prodConfig), (err, stats) => {
         if (err) throw new gutil.PluginError("webpack:build", err);
         gutil.log("[webpack:build]", stats.toString({
             colors: true
         }));
-        callback();
+        cb();
     });
 });
 
-const devConfig = Object.create(webpackConfig);
-devConfig.devtool = "source-map";
-devConfig.debug = true;
-devConfig.entry = devConfig.entry.concat(
-    "webpack-hot-middleware/client?reload=true",
-    path.join(__dirname, "src/main.js")
-);
-devConfig.plugins = devConfig.plugins.concat(
-    new webpack.DefinePlugin({
-        "process.env": {
-            NODE_ENV: '"development"'
-        }
-    }),
-    new webpack.HotModuleReplacementPlugin()
-);
-
-const devCompiler = webpack(devConfig);
-
-gulp.task("webpack:build-dev", function (callback) {
-    // run webpack
-    devCompiler.run((err, stats) => {
+gulp.task("webpack:build-dev", (cb) => {
+    webpack(Object.create(devConfig)).run((err, stats) => {
         if (err) throw new gutil.PluginError("webpack:build-dev", err);
         gutil.log("[webpack:build-dev]", stats.toString({
             colors: true
         }));
-        callback();
     });
 });
 
-gulp.task("webpack-dev-server", (callback) => {
-    // modify some webpack config options
-    const devConfig = Object.create(webpackConfig);
-    devConfig.devtool = "source-map";
-    devConfig.debug = true;
-
+gulp.task("webpack-dev-server", (cb) => {
     // Start a webpack-dev-server
-    new WebpackDevServer(webpack(devConfig), {
+    new WebpackDevServer(webpack(Object.create(devConfig)), {
         publicPath: "/" + devConfig.output.publicPath,
         stats: {
             colors: true

@@ -49,7 +49,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html'),
-            filename: 'index.html'
+            filename: 'index.html',
+            inject: true
         }),
         new ExtractTextPlugin('styles.css'),
         new webpack.optimize.OccurenceOrderPlugin(),
