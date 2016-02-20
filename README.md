@@ -14,6 +14,7 @@
 * *[Vue.js](http://vuejs.org/)*
 * *[Webpack](https://webpack.github.io/)*
 * *[Express](http://expressjs.com/)*
+* *[Gulp](http://gulpjs.com/)*
 * *[PM2](http://pm2.keymetrics.io/)*
 
 
