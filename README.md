@@ -24,7 +24,8 @@ Using *Undertow* as embedded web server and *Capsule* as packaging and deploymen
 For frontend application:
 Using *Vue.js* for the ViewModel, *Webpack* as module bundler, *Express* as frontend server, *PM2* as production process manager for Node.js applications.
 ```
-gradle :frontend:npm_install    // the same as `npm install`
-gradle :frontend:npmRunWithDev  // the same as `npm start`, or `node server.js`
+npm install
+npm start  // the same as `node server.js`
+npm run build  // for production build
 
 ```
