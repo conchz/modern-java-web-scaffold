@@ -24,14 +24,14 @@ project(':backend') {
         capsulePluginVersion = '1.0.2'
 
         logbackVersion = '1.1.3'
-        undertowVersion = '1.3.17.Final'
+        undertowVersion = '1.3.18.Final'
         jacksonVersion = '2.7.1'
         aspectjVersion = '1.8.8'
-        springVersion = '4.2.4.RELEASE'
+        springVersion = '4.2.5.RELEASE'
         mysqlDriverVersion = '5.1.38'
         mybatisVersion = '3.3.1'
         mybatisSpringVersion = '1.2.4'
-        mybatisMapperVersion = '3.3.4'
+        mybatisMapperVersion = '3.3.6'
         mybatisGeneratorVersion = '1.3.2'
     }
 
@@ -53,14 +53,14 @@ project(':backend') {
         compile "io.jsonwebtoken:jjwt:0.6.0"
 
         // For Spring Dependencies
-        compile "org.slf4j:jcl-over-slf4j:1.7.13"
+        compile "org.slf4j:jcl-over-slf4j:1.7.16"
         compile "org.aspectj:aspectjrt:$aspectjVersion"
         compile "org.aspectj:aspectjweaver:$aspectjVersion"
         compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
         compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
         compile "commons-fileupload:commons-fileupload:1.3.1"
 
-        testCompile "junit:junit:4.12"
+        testCompile 'junit:junit5-api:5.0.0-ALPHA'
     }
 }
 
