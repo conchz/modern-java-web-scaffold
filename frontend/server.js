@@ -4,7 +4,6 @@
 
 import path from 'path'
 import express from 'express'
-import fallback from 'express-history-api-fallback'
 import favicon from 'serve-favicon'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
@@ -36,7 +35,6 @@ if (isDev) {
 
     app.use(devMiddleware);
     app.use(webpackHotMiddleware(compiler));
-    //app.use(fallback('dist/index.html', {root: __dirname}));
     configFavicon(app);
     app.get('*', (req, res) => {
         res.write(devMiddleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
@@ -44,7 +42,6 @@ if (isDev) {
     });
 } else {
     app.use(express.static(__dirname + '/dist'));
-    //app.use(fallback('dist/index.html', {root: __dirname}));
     configFavicon(app);
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'dist/index.html'));

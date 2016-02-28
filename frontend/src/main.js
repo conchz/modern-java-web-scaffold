@@ -8,22 +8,20 @@ import * as VueStrap from 'vue-strap'
 import app from './app'
 import configRoutes from './routes'
 
-Vue.config.debug = true;
+new Vue({
+    http: {
+        root: '/api',
+        headers: {
+            Authorization: 'Basic YXBpOnBhc3N3b3Jk'
+        },
+        options: {
+            emulateJSON: true,
+            emulateHTTP: true
+        }
+    }
+});
 
-//new Vue({
-//    http: {
-//        root: '/api',
-//        headers: {
-//            Authorization: 'Basic YXBpOnBhc3N3b3Jk'
-//        },
-//        options: {
-//            emulateJSON: true,
-//            emulateHTTP: true
-//        }
-//    }
-//});
-//
-//Vue.use(VueResource);
+Vue.use(VueResource);
 Vue.use(VueRouter);
 
 const router = new VueRouter({

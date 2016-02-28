@@ -1,9 +1,3 @@
-<style>
-    .view {
-        transition: all .5s ease;
-    }
-</style>
-
 <template>
     <div>
         <p>current path: {{$route.path}}</p>
@@ -11,7 +5,7 @@
         <a v-link="{ path: '/signIn', exact: true }">登录</a>
         <a v-link="{ path: '/signUp', exact: true }">注册</a>
         <a v-link="{ path: '/about', exact: true }">关于</a>
-        <router-view class="view" transition="view" transition-mode="out-in" keep-alive></router-view>
+        <router-view transition-mode="out-in"></router-view>
     </div>
 </template>
 
