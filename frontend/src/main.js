@@ -6,32 +6,32 @@ import VueRouter from 'vue-router'
 import * as VueStrap from 'vue-strap'
 
 import app from './app'
-import { configRouter } from './routers'
+import configRoutes from './routes'
 
 Vue.config.debug = true;
 
-let frontendApp = new Vue({
-    http: {
-        root: '/api',
-        headers: {
-            Authorization: 'Basic YXBpOnBhc3N3b3Jk'
-        },
-        options: {
-            emulateJSON: true,
-            emulateHTTP: true
-        }
-    }
-});
-
-Vue.use(VueResource);
+//new Vue({
+//    http: {
+//        root: '/api',
+//        headers: {
+//            Authorization: 'Basic YXBpOnBhc3N3b3Jk'
+//        },
+//        options: {
+//            emulateJSON: true,
+//            emulateHTTP: true
+//        }
+//    }
+//});
+//
+//Vue.use(VueResource);
 Vue.use(VueRouter);
 
-let router = new VueRouter({
+const router = new VueRouter({
     hashbang: false,
     history: true,
     mode: 'html5'
 });
 
-configRouter(router);
+configRoutes(router);
 
 router.start(Vue.extend(app), '#app');

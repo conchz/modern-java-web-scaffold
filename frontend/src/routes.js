@@ -4,7 +4,7 @@ import SignUpComponent from './components/sign_up'
 import AboutComponent from './components/about.vue'
 import NotFoundComponent from './components/not_found'
 
-export function configRouter(router) {
+export default router => {
     router.map({
         '/': {
             component: HomeComponent

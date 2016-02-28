@@ -18,7 +18,7 @@ const configFavicon = (app) => {
 };
 
 if (isDev) {
-    let devConfig = require('./webpack.dev.config.js');
+    const devConfig = require('./webpack.dev.config.js');
 
     const compiler = webpack(devConfig);
     const devMiddleware = webpackDevMiddleware(compiler, {
@@ -36,7 +36,7 @@ if (isDev) {
 
     app.use(devMiddleware);
     app.use(webpackHotMiddleware(compiler));
-    app.use(fallback('dist/index.html', {root: __dirname}));
+    //app.use(fallback('dist/index.html', {root: __dirname}));
     configFavicon(app);
     app.get('*', (req, res) => {
         res.write(devMiddleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
@@ -44,14 +44,14 @@ if (isDev) {
     });
 } else {
     app.use(express.static(__dirname + '/dist'));
-    app.use(fallback('dist/index.html', {root: __dirname}));
+    //app.use(fallback('dist/index.html', {root: __dirname}));
     configFavicon(app);
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'dist/index.html'));
     });
 }
 
-app.listen(port, '0.0.0.0', (err) => {
+app.listen(port, '0.0.0.0', err => {
     if (err) {
         console.log(err);
     }
