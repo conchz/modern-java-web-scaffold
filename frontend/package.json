@@ -55,9 +55,8 @@
   },
   "dependencies": {
     "babel-cli": "^6.6.0",
-    "babel-runtime": "^5.8.0",
     "bootstrap": "^3.3.6",
-    "vue": "^1.0.16",
+    "vue": "^1.0.17",
     "vue-resource": "^0.7.0",
     "vue-router": "^0.7.11",
     "vue-strap": "^1.0.8"
