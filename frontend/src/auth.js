@@ -1,4 +1,4 @@
-import { router } from '../main'
+import { router } from './main'
 
 const API_URL = 'http://localhost:8081/api',
     LOGIN_URL = API_URL + '/user/login',

@@ -22,19 +22,28 @@ const path = require('path'),
 
 gulp.task('default', ['dev-server']);
 
-gulp.task('clean', cb =>
+gulp.task('clean', () =>
     rimraf('dist/*', err => {
-        if (err) throw new gutil.PluginError('clean', err);
-        cb()
+        if (err) throw new gutil.PluginError('clean', err)
     })
 );
 
-gulp.task('build-dev', ['clean', 'webpack:build-dev'], () => {
+gulp.task('css', () =>
+    gulp.src('node_modules/bootstrap/dist/css/*.min.css')
+        .pipe(gulp.dest('dist/assets/css'))
+);
+
+gulp.task('fonts', () =>
+    gulp.src('node_modules/bootstrap/dist/fonts/*.{eot,svg,ttf,woff,woff2}')
+        .pipe(gulp.dest('dist/assets/fonts'))
+);
+
+gulp.task('build-dev', ['clean', 'css', 'fonts', 'webpack:build-dev'], () => {
     gulp.watch(['src/**/*'], ['webpack:build-dev']);
 });
 
 // Production build
-gulp.task('build', ['clean', 'webpack:build-prod']);
+gulp.task('build', ['clean', 'css', 'fonts', 'webpack:build-prod']);
 
 gulp.task('webpack:build-dev', cb =>
     webpack(Object.create(devConfig)).run((err, stats) => {

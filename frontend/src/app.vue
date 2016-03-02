@@ -10,6 +10,8 @@
 </template>
 
 <script>
+    import * as VueStrap from 'vue-strap'
+
     export default {
         events: {}
     };
