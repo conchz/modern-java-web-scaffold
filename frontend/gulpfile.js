@@ -14,10 +14,10 @@ const path = require('path'),
     app = express(),
     port = (process.env.NODE_ENV !== 'production') ? 8000 : process.env.PORT,
     configFavicon = app => app.use(favicon(path.join(__dirname, 'src/images/favicon.ico'))),
-    startApp = app =>
+    startApp = (env, app) =>
         app.listen(port, '0.0.0.0', err => {
             if (err) throw new gutil.PluginError('dev-server', err);
-            gutil.log('[dev-server]', '==> Listening on port ' + port + '. Open up http://0.0.0.0:' + port + '/ in your browser.')
+            gutil.log('[' + env + '-server]', '==> Listening on port ' + port + '. Open up http://0.0.0.0:' + port + '/ in your browser.')
         });
 
 gulp.task('default', ['dev-server']);
@@ -81,5 +81,5 @@ gulp.task('dev-server', ['build-dev'], () => {
         res.end();
     });
 
-    startApp(app)
+    startApp('dev', app)
 });
