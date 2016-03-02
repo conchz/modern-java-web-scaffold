@@ -11,9 +11,6 @@ import configRoutes from './routes'
 new Vue({
     http: {
         root: '/api',
-        headers: {
-            Authorization: 'Basic YXBpOnBhc3N3b3Jk'
-        },
         options: {
             emulateJSON: true,
             emulateHTTP: true
@@ -24,7 +21,7 @@ new Vue({
 Vue.use(VueResource);
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+export const router = new VueRouter({
     hashbang: false,
     history: true,
     mode: 'html5'
