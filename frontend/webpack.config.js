@@ -29,28 +29,20 @@ module.exports = {
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             },
             {
-                test: /\.(jpeg|jpg|png|gif|svg)$/,
+                test: /\.scss$/,
+                loader: 'style!css!sass'
+            },
+            {
+                test: /\.(jpeg|jpg|png|gif)$/,
                 loader: 'url?limit=8192'
             },
             {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'file'
-            },
-            {
                 test: /\.(woff|woff2)$/,
-                loader: 'url?prefix=font/&limit=10000'
+                loader: 'url?limit=8192'
             },
             {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/octet-stream'
-            },
-            {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=image/svg+xml'
-            },
-            {
-                test: /\.scss$/,
-                loader: 'style!css!sass'
+                test: /\.(eot|svg|ttf)(\?[\s\S]+)?$/,
+                loader: 'file'
             },
             {
                 test: /\.html$/,

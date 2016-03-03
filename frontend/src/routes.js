@@ -1,25 +1,29 @@
-import HomeComponent from './components/home'
-import SignInComponent from './components/sign_in'
-import SignUpComponent from './components/sign_up'
-import AboutComponent from './components/about.vue'
-import NotFoundComponent from './components/not_found'
+import Home from './components/home'
+import SecretQuote from './components/secret_quote'
+import SignIn from './components/sign_in'
+import SignUp from './components/sign_up'
+import About from './components/about'
+import PageNotFound from './components/not_found'
 
 export default router => {
     router.map({
         '/': {
-            component: HomeComponent
+            component: Home
         },
-        '/signIn': {
-            component: SignInComponent
+        '/secretQuote': {
+            component: SecretQuote
+        },
+        '/login': {
+            component: SignIn
         },
         '/signUp': {
-            component: SignUpComponent
+            component: SignUp
         },
         '/about': {
-            component: AboutComponent
+            component: About
         },
         "*": {
-            component: NotFoundComponent
+            component: PageNotFound
         }
     });
 

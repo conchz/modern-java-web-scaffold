@@ -1,8 +1,8 @@
 "use strict";
 
-const path = require('path');
-const webpack = require('webpack');
-const devConfig = require('./webpack.config.js');
+const path = require('path'),
+    webpack = require('webpack'),
+    devConfig = require('./webpack.config.js');
 
 devConfig.debug = true;
 devConfig.devtool = 'source-map';

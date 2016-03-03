@@ -1,0 +1,5 @@
+/* import Bootstrap for Vue */
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css";
+
+/* public styles */

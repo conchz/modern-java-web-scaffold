@@ -28,22 +28,13 @@ gulp.task('clean', () =>
     })
 );
 
-gulp.task('css', () =>
-    gulp.src('node_modules/bootstrap/dist/css/*.min.css')
-        .pipe(gulp.dest('dist/assets/css'))
-);
-
-gulp.task('fonts', () =>
-    gulp.src('node_modules/bootstrap/dist/fonts/*.{eot,svg,ttf,woff,woff2}')
-        .pipe(gulp.dest('dist/assets/fonts'))
-);
-
-gulp.task('build-dev', ['clean', 'css', 'fonts', 'webpack:build-dev'], () => {
+gulp.task('build-dev', ['clean', 'webpack:build-dev'], cb => {
     gulp.watch(['src/**/*'], ['webpack:build-dev']);
+    cb()
 });
 
 // Production build
-gulp.task('build', ['clean', 'css', 'fonts', 'webpack:build-prod']);
+gulp.task('build', ['clean', 'webpack:build-prod']);
 
 gulp.task('webpack:build-dev', cb =>
     webpack(Object.create(devConfig)).run((err, stats) => {
@@ -86,8 +77,9 @@ gulp.task('dev-server', ['build-dev'], () => {
     app.use(webpackHotMiddleware(compiler));
     configFavicon(app);
     app.get('*', (req, res) => {
-        res.write(devMiddleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
-        res.end();
+        //res.write(devMiddleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
+        //res.end();
+        res.sendFile(path.join(__dirname, 'dist/index.html'));
     });
 
     startApp('dev', app)

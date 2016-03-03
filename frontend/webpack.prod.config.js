@@ -1,8 +1,8 @@
 "use strict";
 
-const path = require('path');
-const webpack = require('webpack');
-const prodConfig = require('./webpack.config.js');
+const path = require('path'),
+    webpack = require('webpack'),
+    prodConfig = require('./webpack.config.js');
 
 prodConfig.entry = prodConfig.entry.concat(path.join(__dirname, 'src/main.js'));
 prodConfig.plugins = prodConfig.plugins.concat(
