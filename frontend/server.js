@@ -2,19 +2,28 @@
 
 "use strict";
 
-import path from 'path'
-import express from 'express'
-import favicon from 'serve-favicon'
-import webpack from 'webpack'
-import webpackDevMiddleware from 'webpack-dev-middleware'
-import webpackHotMiddleware from 'webpack-hot-middleware'
+const path = require('path'),
+    express = require('express'),
+    favicon = require('serve-favicon'),
+    webpack = require('webpack'),
+    webpackDevMiddleware = require('webpack-dev-middleware'),
+    webpackHotMiddleware = require('webpack-hot-middleware');
 
-const isDev = process.env.NODE_ENV !== 'production';
-const port = isDev ? 8000 : process.env.PORT;
-const app = express();
-const configFavicon = (app) => {
-    app.use(favicon(path.join(__dirname, 'src/images/favicon.ico')))
-};
+/**
+ import path from 'path'
+ import express from 'express'
+ import favicon from 'serve-favicon'
+ import webpack from 'webpack'
+ import webpackDevMiddleware from 'webpack-dev-middleware'
+ import webpackHotMiddleware from 'webpack-hot-middleware'
+ */
+
+const isDev = process.env.NODE_ENV !== 'production',
+    port = isDev ? 8000 : process.env.PORT,
+    app = express(),
+    configFavicon = (app) => {
+        app.use(favicon(path.join(__dirname, 'src/images/favicon.ico')))
+    };
 
 if (isDev) {
     const devConfig = require('./webpack.dev.config.js');
