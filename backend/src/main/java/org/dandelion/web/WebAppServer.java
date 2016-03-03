@@ -1,10 +1,8 @@
 package org.dandelion.web;
 
 import com.google.common.collect.Lists;
-import io.undertow.Handlers;
 import io.undertow.Undertow;
 import io.undertow.server.HttpHandler;
-import io.undertow.server.handlers.PathHandler;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import io.undertow.servlet.Servlets;
 import io.undertow.servlet.api.*;
@@ -26,7 +24,7 @@ import java.util.List;
  */
 public class WebAppServer implements DisposableBean {
     private final List<String> staticResourceMappings =
-            Lists.newArrayList("*.css", "js", "*.ico", "*.gif", "*.jpg", "*.jpeg", "*.png");
+            Lists.newArrayList("*.css", "*.js", "*.ico", "*.gif", "*.jpg", "*.jpeg", "*.png");
     private final Logger logger = LoggerFactory.getLogger(WebAppServer.class);
 
     private final String webAppName;
@@ -54,18 +52,16 @@ public class WebAppServer implements DisposableBean {
                 .setClassLoader(this.getClass().getClassLoader())
                 .setContextPath("/")
                 .setDefaultEncoding("UTF-8")
-                .setDeploymentName(webAppName + "-exploded")
+                .setDeploymentName(webAppName)
                 .setResourceManager(new ClassPathResourceManager(this.getClass().getClassLoader()))
                 .addServlet(defaultServlet);
         deploymentManager = Servlets.defaultContainer().addDeployment(deploymentInfo);
         deploymentManager.deploy();
 
         HttpHandler httpHandler = deploymentManager.start();
-        PathHandler pathHandler = Handlers.path(Handlers.redirect("/" + webAppName));
-        pathHandler.addPrefixPath("/" + webAppName, httpHandler);
 
         undertowServer = Undertow.builder()
-                .addHttpListener(port, "::0")
+                .addHttpListener(port, "localhost")
                 .setHandler(httpHandler)
                 .build();
 
