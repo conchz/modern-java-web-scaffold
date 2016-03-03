@@ -1,9 +1,9 @@
 <template>
     <div>
         <h3>Message: {{msg}}</h3>
-        <input v-model="msg">
+        <input class="form-control" v-model="msg">
         <br>
-        <button @click="greet">Greet</button>
+        <button class="btn btn-default" @click="greet">Greet</button>
     </div>
 </template>
 

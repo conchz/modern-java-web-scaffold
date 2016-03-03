@@ -1,18 +1,35 @@
 <template>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a v-link="{ path: '/', exact: true }">首页</a></li>
+                <li><a v-link="{ path: '/login', exact: true }" v-if="!user.authenticated">登录</a></li>
+                <li><a v-link="{ path: '/signUp', exact: true }" v-if="!user.authenticated">注册</a></li>
+                <li><a v-link="{ path: '/about', exact: true }" v-if="!user.authenticated">关于</a></li>
+                <li><a v-link="{ path: '/secretQuote', exact: true }" v-if="user.authenticated">Secret Quote</a></li>
+                <li><a v-link="'login'" v-if="user.authenticated" @click="logout()">退出</a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
-        <p>current path: {{$route.path}}</p>
-        <a v-link="{ path: '/', exact: true }">首页</a>
-        <a v-link="{ path: '/login', exact: true }">登录</a>
-        <a v-link="{ path: '/signUp', exact: true }">注册</a>
-        <a v-link="{ path: '/about', exact: true }">关于</a>
         <router-view transition-mode="out-in"></router-view>
     </div>
 </template>
 
 <script>
-    import * as VueStrap from 'vue-strap'
+    import auth from './auth'
 
     export default {
+        data() {
+            return {
+                user: auth.user
+            }
+        },
+        methods: {
+            logout() {
+                auth.logout()
+            }
+        },
         events: {}
     };
 </script>

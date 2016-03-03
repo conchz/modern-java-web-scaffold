@@ -15,9 +15,9 @@ const path = require('path'),
     port = (process.env.NODE_ENV !== 'production') ? 8000 : process.env.PORT,
     configFavicon = app => app.use(favicon(path.join(__dirname, 'src/images/favicon.ico'))),
     startApp = (env, app) =>
-        app.listen(port, '0.0.0.0', err => {
-            if (err) throw new gutil.PluginError('dev-server', err);
-            gutil.log('[' + env + '-server]', '==> Listening on port ' + port + '. Open up http://0.0.0.0:' + port + '/ in your browser.')
+        app.listen(port, 'localhost', err => {
+            if (err) throw new gutil.PluginError(env + '-server', err);
+            gutil.log('[' + env + '-server]', '==> Listening on port ' + port + '. Open up http://localhost:' + port + '/ in your browser.')
         });
 
 gulp.task('default', ['dev-server']);
