@@ -52,7 +52,14 @@ module.exports = {
     },
     resolve: {
         root: path.join(__dirname, 'node_modules'),
-        extensions: ['', '.js', '.vue']
+        extensions: ['', '.js', '.vue'],
+        alias: {
+            'src': path.resolve(__dirname, './src'),
+            'assets': path.resolve(__dirname, './src/assets'),
+            'components': path.resolve(__dirname, './src/components'),
+            'views': path.resolve(__dirname, './src/views'),
+            'bootstrap': path.resolve(__dirname, './node_modules/bootstrap/dist/')
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({

@@ -1,9 +1,9 @@
-import Home from './components/home'
-import SecretQuote from './components/secret_quote'
-import SignIn from './components/sign_in'
-import SignUp from './components/sign_up'
-import About from './components/about'
-import PageNotFound from './components/not_found'
+import Home from 'views/home'
+import SecretQuote from 'views/secret_quote'
+import SignIn from 'views/sign_in'
+import SignUp from 'views/sign_up'
+import About from 'views/about'
+import PageNotFound from 'views/not_found'
 
 export default router => {
     router.map({

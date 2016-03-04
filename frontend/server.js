@@ -22,7 +22,7 @@ const isDev = process.env.NODE_ENV !== 'production',
     port = isDev ? 8000 : process.env.PORT,
     app = express(),
     configFavicon = (app) => {
-        app.use(favicon(path.join(__dirname, 'src/images/favicon.ico')))
+        app.use(favicon(path.join(__dirname, 'src/assets/images/favicon.ico')))
     };
 
 if (isDev) {

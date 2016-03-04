@@ -10,19 +10,15 @@
                    placeholder="Enter your username" v-model="credentials.username">
         </div>
         <div class="form-group">
-            <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Enter your password"
-                    v-model="credentials.password"
-            >
+            <input type="password" class="form-control"
+                   placeholder="Enter your password" v-model="credentials.password">
         </div>
         <button class="btn btn-primary" @click="submit()">Access</button>
     </div>
 </template>
 
 <script>
-    import auth from '../auth'
+    import auth from 'src/auth'
 
     export default {
         data() {
@@ -40,7 +36,7 @@
                     username: this.credentials.username,
                     password: this.credentials.password
                 };
-                auth.login(this, credentials, 'secretquote')
+                auth.login(this, credentials, 'secretQuote')
             }
         }
 

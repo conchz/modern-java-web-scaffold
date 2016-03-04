@@ -1,12 +1,14 @@
-import './css/public.css'
+import 'bootstrap/css/bootstrap.min.css'
+import 'bootstrap/css/bootstrap-theme.min.css'
+import 'assets/css/public.css'
 
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 
-import app from './app'
-import auth from './auth'
-import configRoutes from './routes'
+import app from 'src/app'
+import auth from 'src/auth'
+import configRoutes from 'src/routes'
 
 new Vue({
     http: {

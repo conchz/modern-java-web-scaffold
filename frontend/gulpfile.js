@@ -13,7 +13,7 @@ const path = require('path'),
     prodConfig = require('./webpack.prod.config.js'),
     app = express(),
     port = (process.env.NODE_ENV !== 'production') ? 8000 : process.env.PORT,
-    configFavicon = app => app.use(favicon(path.join(__dirname, 'src/images/favicon.ico'))),
+    configFavicon = app => app.use(favicon(path.join(__dirname, 'src/assets/images/favicon.ico'))),
     startApp = (env, app) =>
         app.listen(port, 'localhost', err => {
             if (err) throw new gutil.PluginError(env + '-server', err);
