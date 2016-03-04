@@ -1,6 +1,6 @@
 {
   "apps": {
-    "name": "MJWS-Frontend",
+    "name": "modern-java-web-scaffold",
     "script": "server.js",
     "env": {
       "COMMON_VARIABLE": "true"
@@ -19,20 +19,20 @@
       "repo": "https://github.com/dolphineor/modern-java-web-scaffold.git",
       "path": "/var/www/production",
       "pre-deploy-local": "echo 'This is a local executed command'",
-      "post-deploy": "gradle :frontend:npm_install npmBuild && pm2 startOrRestart ecosystem.json --env production",
+      "post-deploy": "npm run build && pm2 startOrRestart ecosystem.json --env production",
       "env": {
         "NODE_ENV": "production"
       }
     },
-    "dev": {
+    "beta": {
       "user": "root",
       "host": "127.0.0.1",
       "ref": "origin/master",
       "repo": "https://github.com/dolphineor/modern-java-web-scaffold.git",
-      "path": "/var/www/development",
-      "post-deploy": "gradle :frontend:npm_install npmBuild && pm2 startOrRestart ecosystem.json --env dev",
+      "path": "/var/www/beta",
+      "post-deploy": "npm run build && pm2 startOrRestart ecosystem.json --env beta",
       "env": {
-        "NODE_ENV": "dev"
+        "NODE_ENV": "beta"
       }
     }
   }
