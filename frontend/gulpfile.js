@@ -84,3 +84,13 @@ gulp.task('dev-server', ['build-dev'], () => {
 
     startApp('dev', app)
 });
+
+gulp.task('prod-server', ['build'], () => {
+    app.use(express.static(__dirname + '/dist'));
+    configFavicon(app);
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'dist/index.html'));
+    });
+
+    startApp('prod', app)
+});

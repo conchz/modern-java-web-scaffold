@@ -21,9 +21,7 @@ const path = require('path'),
 const isDev = process.env.NODE_ENV !== 'production',
     port = isDev ? 8000 : process.env.PORT,
     app = express(),
-    configFavicon = (app) => {
-        app.use(favicon(path.join(__dirname, 'src/assets/images/favicon.ico')))
-    };
+    configFavicon = app => app.use(favicon(path.join(__dirname, 'src/assets/images/favicon.ico')));
 
 if (isDev) {
     const devConfig = require('./webpack.dev.config.js');
@@ -48,18 +46,18 @@ if (isDev) {
     app.get('*', (req, res) => {
         res.write(devMiddleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
         res.end();
-    });
+    })
 } else {
     app.use(express.static(__dirname + '/dist'));
     configFavicon(app);
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'dist/index.html'));
-    });
+    })
 }
 
 app.listen(port, '0.0.0.0', err => {
     if (err) {
         console.log(err);
     }
-    console.info('==> Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
+    console.info('==> Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port)
 });

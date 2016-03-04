@@ -2,7 +2,8 @@
 
 const path = require('path'),
     webpack = require('webpack'),
-    devConfig = require('./webpack.config.js');
+    baseConfig = require('./webpack.config.js'),
+    devConfig = Object.create(baseConfig);
 
 devConfig.debug = true;
 devConfig.devtool = 'source-map';

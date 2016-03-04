@@ -2,7 +2,8 @@
 
 const path = require('path'),
     webpack = require('webpack'),
-    prodConfig = require('./webpack.config.js');
+    baseConfig = require('./webpack.config.js'),
+    prodConfig = Object.create(baseConfig);
 
 prodConfig.entry = prodConfig.entry.concat(path.join(__dirname, 'src/main.js'));
 prodConfig.plugins = prodConfig.plugins.concat(
