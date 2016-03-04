@@ -51,7 +51,12 @@ if (isDev) {
     app.use(express.static(__dirname + '/dist'));
     configFavicon(app);
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'dist/index.html'));
+        const match = req.url.match(/^\/assets\/.+\.(css|js|jpeg|jpg|png|gif)$/)[0];
+        if (match != null) {
+            res.sendFile(path.join(__dirname, 'dist', match.replace(/^\/assets\//, '')));
+        } else {
+            res.sendFile(path.join(__dirname, 'dist/index.html'));
+        }
     })
 }
 
