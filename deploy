@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Project root directory
+base_dir=$(pwd)
+
+./gradlew :backend:clean fatCapsule
+cd $base_dir/backend/build/libs
+# TODO deploy RESTful API server
+
+cd $base_dir/frontend
+
+export NODE_ENV=production && npm install && npm run build
+# pm2 start server.js -i 0 --name modern-java-web-app
+pm2 restart modern-java-web-app
