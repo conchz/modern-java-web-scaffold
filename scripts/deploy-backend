@@ -7,15 +7,12 @@ executableBackendJar=modern-java-web-scaffold-*.jar
 restApiPid=$(netstat -anp | grep 8081 | awk '{printf $7}' | cut -d/ -f1 2> /dev/null)
 
 if [ ! -n "$restApiPid" ];  then
-    deployBackendApp
+    echo "starting a new server"
 else
+    echo "redeploying ..."
     kill "$restApiPid"
-    deployBackendApp
 fi
 
-
-function deployBackendApp() {
-    cp $executableBackendJar /var/prod/modern-java-web-app/
-    cd /var/prod/modern-java-web-app && rm -rf ./*/
-    java -server -Xms512m -Xmx512m -Dfile.encoding=UTF-8 -jar $executableBackendJar
-}
+cp $executableBackendJar /var/prod/modern-java-web-app/
+cd /var/prod/modern-java-web-app && rm -rf ./*/
+java -server -Xms512m -Xmx512m -Dfile.encoding=UTF-8 -jar $executableBackendJar

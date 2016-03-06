@@ -3,9 +3,9 @@
 # Project root directory
 base_dir=$(pwd)
 
-deploy
-
 function deploy() {
     ./scripts/deploy-backend &
     ./scripts/deploy-frontend &
 }
+
+deploy
