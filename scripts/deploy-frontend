@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd $base_dir/frontend
+netstat -anp | grep 8000 | grep -v grep
+if [ $? -ne 0 ];  then
+    export NODE_ENV=production
+    npm install
+    npm run build
+    pm2 start server.js -i 0 --name modern-java-web-app
+else
+    npm run build
+    pm2 reload modern-java-web-app
+fi
