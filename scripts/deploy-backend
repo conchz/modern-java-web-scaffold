@@ -15,5 +15,5 @@ else
     kill "$restApiPid"
 fi
 
-rm -rf $deploy_dir/* && cp $executableBackendJar $deploy_dir && cd $deploy_dir
+rm -rf $deploy_dir/*.jar && cp $executableBackendJar $deploy_dir && cd $deploy_dir
 java -server -Xms512m -Xmx512m -Dfile.encoding=UTF-8 -jar $executableBackendJar
