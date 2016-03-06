@@ -2,7 +2,9 @@
 
 # Project root directory
 base_dir=$(pwd)
+export base_dir
 
+# Deploy backend & frontend applications
 function deploy() {
     ./scripts/deploy-backend &
     ./scripts/deploy-frontend &

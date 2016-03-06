@@ -3,6 +3,8 @@
 cd $base_dir
 ./gradlew :backend:clean fatCapsule
 cd $base_dir/backend/build/libs
+
+deploy_dir=/var/prod/modern-java-web-app/
 executableBackendJar=modern-java-web-scaffold-*.jar
 restApiPid=$(netstat -anp | grep 8081 | awk '{printf $7}' | cut -d/ -f1 2> /dev/null)
 
@@ -13,6 +15,5 @@ else
     kill "$restApiPid"
 fi
 
-cp $executableBackendJar /var/prod/modern-java-web-app/
-cd /var/prod/modern-java-web-app && rm -rf ./*/
+rm -rf $deploy_dir/* && cp $executableBackendJar $deploy_dir && cd $deploy_dir
 java -server -Xms512m -Xmx512m -Dfile.encoding=UTF-8 -jar $executableBackendJar
