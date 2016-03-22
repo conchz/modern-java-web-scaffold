@@ -23,9 +23,9 @@ project(':backend') {
         flywayPluginVersion = '4.0'
         capsulePluginVersion = '1.0.2'
 
-        logbackVersion = '1.1.3'
-        undertowVersion = '1.3.18.Final'
-        jacksonVersion = '2.7.2'
+        logbackVersion = '1.1.6'
+        undertowVersion = '1.3.19.Final'
+        jacksonVersion = '2.7.3'
         aspectjVersion = '1.8.9'
         springVersion = '4.2.5.RELEASE'
         mysqlDriverVersion = '5.1.38'
