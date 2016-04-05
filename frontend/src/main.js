@@ -10,17 +10,13 @@ import app from 'src/app'
 import auth from 'src/auth'
 import configRoutes from 'src/routes'
 
-new Vue({
-    http: {
-        options: {
-            emulateJSON: true,
-            emulateHTTP: true
-        }
-    }
-});
+new Vue({});
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
+
+Vue.http.options.emulateJSON = true;
+Vue.http.options.emulateHTTP = true;
 
 auth.checkAuth();
 
