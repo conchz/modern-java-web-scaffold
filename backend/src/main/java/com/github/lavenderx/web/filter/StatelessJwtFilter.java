@@ -1,4 +1,4 @@
-package org.dandelion.web.filter;
+package com.github.lavenderx.web.filter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;

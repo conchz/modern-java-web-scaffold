@@ -1,7 +1,7 @@
-package org.dandelion.service.impl;
+package com.github.lavenderx.service.impl;
 
-import org.dandelion.model.dao.UserDAO;
-import org.dandelion.service.UserService;
+import com.github.lavenderx.service.UserService;
+import com.github.lavenderx.model.dao.UserDAO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

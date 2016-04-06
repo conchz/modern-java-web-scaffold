@@ -1,6 +1,6 @@
-package org.dandelion.model.mapper;
+package com.github.lavenderx.model.mapper;
 
-import org.dandelion.model.entity.UserEntity;
+import com.github.lavenderx.model.entity.UserEntity;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
 

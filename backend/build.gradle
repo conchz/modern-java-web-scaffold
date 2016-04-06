@@ -1,5 +1,5 @@
-group 'org.dandelion'
-version '0.1.0-SNAPSHOT'
+group 'com.github.lavenderx'
+version '0.1.0'
 
 buildscript {
     repositories {

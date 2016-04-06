@@ -1,8 +1,8 @@
-package org.dandelion.model.dao.impl;
+package com.github.lavenderx.model.dao.impl;
 
+import com.github.lavenderx.model.entity.UserEntity;
 import org.apache.ibatis.session.SqlSession;
-import org.dandelion.model.dao.UserDAO;
-import org.dandelion.model.entity.UserEntity;
+import com.github.lavenderx.model.dao.UserDAO;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;

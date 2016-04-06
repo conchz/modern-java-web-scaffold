@@ -1,4 +1,4 @@
-package org.dandelion.service;
+package com.github.lavenderx.service;
 
 /**
  * Created on 2016-01-18.

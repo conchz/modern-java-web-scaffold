@@ -1,8 +1,8 @@
-package org.dandelion.web;
+package com.github.lavenderx.web;
 
-import org.dandelion.config.RootConfig;
-import org.dandelion.config.WebMvcConfig;
-import org.dandelion.web.filter.StatelessJwtFilter;
+import com.github.lavenderx.config.WebMvcConfig;
+import com.github.lavenderx.config.RootConfig;
+import com.github.lavenderx.web.filter.StatelessJwtFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.ContextLoaderListener;

@@ -1,6 +1,6 @@
-package org.dandelion.model.dao;
+package com.github.lavenderx.model.dao;
 
-import org.dandelion.model.entity.UserEntity;
+import com.github.lavenderx.model.entity.UserEntity;
 
 /**
  * Created on 2016-01-18.

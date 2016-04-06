@@ -1,6 +1,6 @@
-package org.dandelion.boot;
+package com.github.lavenderx;
 
-import org.dandelion.web.WebAppServer;
+import com.github.lavenderx.web.WebAppServer;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
