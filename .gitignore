@@ -1,20 +1,30 @@
-*.log
-
-# Package Files #
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
+### Gradle template
+.gradle
 classes/
 target/
 build/
 out/
 
-# Gradle
-.gradle/
+# Ignore Gradle GUI config
+gradle-app.setting
 
-# IntelliJ
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+### Java template
+*.log
+
+# Package Files #
+#*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Created by .ignore support plugin (hsz.mobi)
+
+# IntelliJ IDEA
 *.iml
 .idea/
 .idea_modules/

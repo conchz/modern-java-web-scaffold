@@ -40,12 +40,12 @@ sourceSets {
 
 ext {
 
-    def props = new Properties();
+    def props = new Properties()
     file("src/main/resources/jdbc-mysql.properties").withInputStream {
         props.load(it)
     }
     props.each {
-        project.extensions.add("$it.key", it.value);
+        project.extensions.add("$it.key", it.value)
     }
 }
 
