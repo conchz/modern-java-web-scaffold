@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const path = require('path');
 const webpack = require('webpack');
@@ -27,10 +27,6 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-            },
-            {
-                test: /\.scss$/,
-                loader: 'style!css!sass'
             },
             {
                 test: /\.(jpeg|jpg|png|gif)$/,
@@ -74,8 +70,7 @@ module.exports = {
     vue: {
         loaders: {
             js: 'babel',
-            css: ExtractTextPlugin.extract("css"),
-            sass: ExtractTextPlugin.extract('css!sass')
+            css: ExtractTextPlugin.extract("css")
         }
     }
 };

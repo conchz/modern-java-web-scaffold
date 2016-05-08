@@ -6,8 +6,8 @@ export base_dir
 
 # Deploy backend & frontend applications
 function deploy() {
-    ./scripts/deploy-backend &
-    ./scripts/deploy-frontend &
+    ./bin/deploy-backend &
+    ./bin/deploy-frontend &
 }
 
 deploy
