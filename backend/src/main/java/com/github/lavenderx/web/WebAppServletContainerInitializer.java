@@ -1,17 +1,20 @@
 package com.github.lavenderx.web;
 
-import com.github.lavenderx.config.WebMvcConfig;
 import com.github.lavenderx.config.RootConfig;
+import com.github.lavenderx.config.WebMvcConfig;
 import com.github.lavenderx.web.filter.StatelessJwtFilter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.util.IntrospectorCleanupListener;
 
-import javax.servlet.*;
+import javax.servlet.FilterRegistration;
+import javax.servlet.ServletContainerInitializer;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 import java.util.Set;
 
 /**
@@ -19,10 +22,8 @@ import java.util.Set;
  *
  * @author dolphineor
  */
+@Slf4j
 public class WebAppServletContainerInitializer implements ServletContainerInitializer {
-
-    private final Logger logger = LoggerFactory.getLogger(WebAppServletContainerInitializer.class);
-
 
     @Override
     public void onStartup(Set<Class<?>> webAppInitializerClasses, ServletContext servletContext) throws ServletException {
@@ -60,7 +61,7 @@ public class WebAppServletContainerInitializer implements ServletContainerInitia
         Set<String> mappingConflicts = appServlet.addMapping("/");
         if (!mappingConflicts.isEmpty()) {
             for (String s : mappingConflicts) {
-                logger.error("Mapping conflict: " + s);
+                log.error("Mapping conflict: " + s);
             }
         }
     }

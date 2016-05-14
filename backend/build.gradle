@@ -64,6 +64,8 @@ dependencies {
     mybatisGenerator "tk.mybatis:mapper:$mybatisMapperVersion"
 }
 
+import us.kirchmeier.capsule.task.FatCapsule
+
 task fatCapsule(type: FatCapsule) {
     applicationClass 'org.dandelion.boot.WebAppBoot'
 
@@ -71,7 +73,12 @@ task fatCapsule(type: FatCapsule) {
 
     capsuleManifest {
         args = ['--very-fancy']
+        applicationName = project.name
+        applicationId = UUID.randomUUID().toString().replaceAll("-", "")
+        applicationVersion = version.toString().replaceAll("-(?i)SNAPSHOT", "")
         minJavaVersion = '1.8'
+        javaVersion = '1.8'
+        jdkRequired = true
     }
 }
 

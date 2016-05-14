@@ -5,11 +5,14 @@ import io.undertow.Undertow;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import io.undertow.servlet.Servlets;
-import io.undertow.servlet.api.*;
+import io.undertow.servlet.api.DeploymentInfo;
+import io.undertow.servlet.api.DeploymentManager;
+import io.undertow.servlet.api.InstanceFactory;
+import io.undertow.servlet.api.ServletContainerInitializerInfo;
+import io.undertow.servlet.api.ServletInfo;
 import io.undertow.servlet.handlers.DefaultServlet;
 import io.undertow.servlet.util.ImmediateInstanceFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 
 import javax.servlet.ServletException;
@@ -22,10 +25,10 @@ import java.util.List;
  *
  * @author dolphineor
  */
+@Slf4j
 public class WebAppServer implements DisposableBean {
     private final List<String> staticResourceMappings =
             Lists.newArrayList("*.css", "*.js", "*.ico", "*.gif", "*.jpg", "*.jpeg", "*.png");
-    private final Logger logger = LoggerFactory.getLogger(WebAppServer.class);
 
     private final String webAppName;
     private final int port;
@@ -72,10 +75,10 @@ public class WebAppServer implements DisposableBean {
 
     @Override
     public void destroy() throws Exception {
-        logger.info("Stopping Undertow web server on port " + port);
+        log.info("Stopping Undertow web server on port " + port);
         undertowServer.stop();
         deploymentManager.stop();
         deploymentManager.undeploy();
-        logger.info("Undertow web server on port " + port + " stopped");
+        log.info("Undertow web server on port " + port + " stopped");
     }
 }
