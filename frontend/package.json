@@ -27,10 +27,10 @@
   "license": "MIT",
   "homepage": "https://github.com/lavenderx/modern-java-web-scaffold/tree/master/frontend",
   "devDependencies": {
-    "babel-core": "^6.8.0",
+    "babel-core": "^6.9.0",
     "babel-loader": "^6.2.4",
-    "babel-plugin-transform-runtime": "^6.8.0",
-    "babel-preset-es2015": "^6.6.0",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
     "browser-sync": "^2.12.5",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
@@ -47,16 +47,16 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.17.0",
     "gulp": "^3.9.1",
-    "webpack": "^1.13.0",
+    "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
-    "babel-cli": "^6.8.0",
+    "babel-cli": "^6.9.0",
     "bootstrap": "^3.3.6",
     "vue": "^1.0.24",
     "vue-resource": "^0.7.0",
     "vue-router": "^0.7.13",
-    "vue-strap": "^1.0.9"
+    "vue-strap": "^1.0.11"
   }
 }
