@@ -1,6 +1,7 @@
 package com.github.lavenderx.controller;
 
-import org.springframework.context.annotation.Scope;
+import com.github.lavenderx.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,24 +12,32 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created on 2016-01-18.
  *
- * @author dolphineor
+ * @author lavenderx
  */
 @RestController
-@Scope("prototype")
 @RequestMapping("/api/user")
-public class UserController {
+public class UserController extends BaseController {
 
-    @RequestMapping(path = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping(path = "/all",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String getAllUser() {
         return "Hello, World!";
     }
 
-    @RequestMapping(path = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(path = "/login",
+            method = RequestMethod.POST, produces =
+            MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String login(HttpServletRequest request) {
         return "";
     }
 
-    @RequestMapping(path = "/logout", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(path = "/logout",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String logout(HttpServletRequest request) {
         return "";
     }

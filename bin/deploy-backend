@@ -1,12 +1,12 @@
 #!/bin/bash
 
 cd $base_dir
-./gradlew :backend:clean fatCapsule
+./gradlew :backend:clean build
 cd $base_dir/backend/build/libs
 
 deploy_dir=/var/prod/modern-java-web-app/
 executableBackendJar=modern-java-web-scaffold-*.jar
-restApiPid=$(netstat -anp | grep 8081 | awk '{printf $7}' | cut -d/ -f1 2> /dev/null)
+restApiPid=$(netstat -anp | grep 9000 | awk '{printf $7}' | cut -d/ -f1 2> /dev/null)
 
 if [ ! -n "$restApiPid" ];  then
     echo "starting a new server"

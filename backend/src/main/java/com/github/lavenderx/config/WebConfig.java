@@ -1,16 +1,21 @@
 package com.github.lavenderx.config;
 
+import com.google.common.collect.Lists;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
+import com.github.lavenderx.filter.StatelessJwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -22,19 +27,23 @@ import java.util.List;
 /**
  * Created on 2016-01-19.
  *
- * @author dolphineor
+ * @author lavenderx
  */
+@Order(0)
 @Configuration
-@EnableWebMvc
 @ComponentScan(basePackages = "com.github.lavenderx.controller",
         includeFilters = {
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.stereotype.Controller.class),
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.web.bind.annotation.RestController.class)
+                @ComponentScan.Filter(type = FilterType.ANNOTATION,
+                        value = org.springframework.stereotype.Controller.class),
+                @ComponentScan.Filter(type = FilterType.ANNOTATION,
+                        value = org.springframework.web.bind.annotation.RestController.class)
         },
-        excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = org.springframework.stereotype.Service.class)
+        excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,
+                value = org.springframework.stereotype.Service.class)
 )
-@SuppressWarnings("unchecked")
-public class WebMvcConfig extends WebMvcConfigurerAdapter {
+@EnableWebMvc
+@Import(RootConfig.class)
+public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public StringHttpMessageConverter stringHttpMessageConverter() {
@@ -59,18 +68,25 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
         multipartResolver.setDefaultEncoding(StandardCharsets.UTF_8.name());
-        // 指定所上传文件的总大小不能超过100M.注意maxUploadSize属性的限制不是针对单个文件, 而是所有文件的容量之和
+        // 指定所上传文件的总大小不能超过100M
+        // 注意maxUploadSize属性的限制不是针对单个文件, 而是所有文件的容量之和
         multipartResolver.setMaxUploadSize(104857600);
         multipartResolver.setMaxInMemorySize(4096);
 
         return multipartResolver;
     }
 
+    @Bean
+    public OncePerRequestFilter statelessJwtFilter() {
+        return new StatelessJwtFilter();
+    }
+
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         // 解决Spring3.1以上版本返回JSON时中文显示乱码问题
-        converters.addAll(Lists.newArrayList(stringHttpMessageConverter(), jackson2HttpMessageConverter()));
+        converters.addAll(Lists.newArrayList(stringHttpMessageConverter(),
+                jackson2HttpMessageConverter()));
     }
 
     // Support Cross-site HTTP request

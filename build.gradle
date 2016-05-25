@@ -1,67 +1,8 @@
 group 'com.github.lavenderx'
-version '0.1.0'
+version '0.1.0-SNAPSHOT'
 
-allprojects {
+subprojects {
     apply plugin: 'idea'
-
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        jcenter()
-    }
-}
-
-project(':backend') {
-    apply plugin: 'java'
-
-    compileJava.options.encoding = 'UTF-8'
-    compileTestJava.options.encoding = 'UTF-8'
-
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-
-    ext {
-        flywayPluginVersion = '4.0'
-        capsulePluginVersion = '1.0.2'
-
-        logbackVersion = '1.1.7'
-        lombokVersion = '1.16.8'
-        jacksonVersion = '2.7.4'
-        aspectjVersion = '1.8.9'
-        springbootVersion = '1.3.5.RELEASE'
-        mysqlDriverVersion = '5.1.38'
-        mybatisVersion = '3.4.0'
-        mybatisSpringVersion = '1.3.0'
-        mybatisMapperVersion = '3.3.8'
-        mybatisGeneratorVersion = '1.3.2'
-    }
-
-    dependencies {
-        compile "ch.qos.logback:logback-classic:$logbackVersion"
-        compile "org.projectlombok:lombok:$lombokVersion"
-        compile("org.springframework.boot:spring-boot-starter-web:$springbootVersion") {
-            exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-        }
-        compile "org.springframework.boot:spring-boot-starter-undertow:$springbootVersion"
-
-        compile "org.mybatis:mybatis:$mybatisVersion"
-        compile "org.mybatis:mybatis-spring:$mybatisSpringVersion"
-        compile "tk.mybatis:mapper:$mybatisMapperVersion"   // MyBatis3 Mapper(http://www.mybatis.tk/)
-        compile "mysql:mysql-connector-java:$mysqlDriverVersion"
-        compile "com.zaxxer:HikariCP:2.4.6"
-        compile "com.google.guava:guava:19.0"
-        compile "io.jsonwebtoken:jjwt:0.6.0"
-
-        // For Spring Dependencies
-        compile "org.slf4j:jcl-over-slf4j:1.7.19"
-        compile "org.aspectj:aspectjrt:$aspectjVersion"
-        compile "org.aspectj:aspectjweaver:$aspectjVersion"
-        compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
-        compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
-        compile "commons-fileupload:commons-fileupload:1.3.1"
-
-        testCompile 'junit:junit:4.12'
-    }
 }
 
 task wrapper(type: Wrapper) {

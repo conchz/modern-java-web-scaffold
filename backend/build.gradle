@@ -1,22 +1,28 @@
 group 'com.github.lavenderx'
-version '0.1.0'
+version rootProject.version
 
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
     }
 
     dependencies {
-        classpath "org.flywaydb:flyway-gradle-plugin:$flywayPluginVersion"
-        classpath "us.kirchmeier:gradle-capsule-plugin:$capsulePluginVersion"
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.5.RELEASE'
+        classpath 'org.flywaydb:flyway-gradle-plugin:4.0'
     }
 }
 
+apply plugin: 'java'
+apply plugin: 'spring-boot'
 apply plugin: 'org.flywaydb.flyway'
-apply plugin: 'us.kirchmeier.capsule'
+
+def profile = 'dev'
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 configurations {
     provided
@@ -41,12 +47,23 @@ sourceSets {
 ext {
 
     def props = new Properties()
-    file("src/main/resources/jdbc-mysql.properties").withInputStream {
+    file("src/main/resources/${profile}.properties").withInputStream {
         props.load(it)
     }
     props.each {
         project.extensions.add("$it.key", it.value)
     }
+
+    logbackVersion = '1.1.7'
+    lombokVersion = '1.16.8'
+    jacksonVersion = '2.7.4'
+    aspectjVersion = '1.8.9'
+    springbootVersion = '1.3.5.RELEASE'
+    mysqlDriverVersion = '5.1.38'
+    mybatisVersion = '3.4.0'
+    mybatisSpringVersion = '1.3.0'
+    mybatisMapperVersion = '3.3.8'
+    mybatisGeneratorVersion = '1.3.2'
 }
 
 flyway {
@@ -56,30 +73,66 @@ flyway {
     locations = ["filesystem:db/migration"]
 }
 
+bootRun {
+    // ex: gradle bootRun -PjvmArgs="-Dspring.profiles.active=dev"
+    if (project.hasProperty('jvmArgs')) {
+        jvmArgs = project.jvmArgs.split("\\s+") as List
+    }
+
+    addResources = true
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'modern-java-web-scaffold-backend',
+                'Implementation-Version': version.toString().replaceAll("-(?i)SNAPSHOT", ""),
+                'Main-Class': 'org.springframework.boot.loader.JarLauncher',
+                'Start-Class': 'com.github.lavenderx.WebAppBoot'
+    }
+
+    encoding = 'UTF-8'
+    zip64 = true
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
 dependencies {
-    provided "javax.servlet:javax.servlet-api:3.1.0"
+    compile "ch.qos.logback:logback-classic:$logbackVersion"
+    compile "org.projectlombok:lombok:$lombokVersion"
+    compile("org.springframework.boot:spring-boot-starter-web:$springbootVersion") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+    compile "org.springframework.boot:spring-boot-starter-undertow:$springbootVersion"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$springbootVersion"
+    compile "org.springframework.boot:spring-boot-devtools:$springbootVersion"
+
+    compile "org.mybatis:mybatis:$mybatisVersion"
+    compile "org.mybatis:mybatis-spring:$mybatisSpringVersion"
+    compile "tk.mybatis:mapper:$mybatisMapperVersion"   // MyBatis3 Mapper(http://www.mybatis.tk/)
+    compile "mysql:mysql-connector-java:$mysqlDriverVersion"
+    compile 'com.zaxxer:HikariCP:2.4.6'
+    compile 'com.google.guava:guava:19.0'
+    compile 'io.jsonwebtoken:jjwt:0.6.0'
+
+    // For Spring Dependencies
+    compile 'org.slf4j:jcl-over-slf4j:1.7.19'
+    compile "org.aspectj:aspectjrt:$aspectjVersion"
+    compile "org.aspectj:aspectjweaver:$aspectjVersion"
+    compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compile 'commons-fileupload:commons-fileupload:1.3.1'
+
+    provided 'javax.servlet:javax.servlet-api:3.1.0'
+
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springbootVersion"
 
     mybatisGenerator "mysql:mysql-connector-java:$mysqlDriverVersion"
     mybatisGenerator "org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion"
     mybatisGenerator "tk.mybatis:mapper:$mybatisMapperVersion"
-}
-
-import us.kirchmeier.capsule.task.FatCapsule
-
-task fatCapsule(type: FatCapsule) {
-    applicationClass 'org.dandelion.boot.WebAppBoot'
-
-    baseName = rootProject.name
-
-    capsuleManifest {
-        args = ['--very-fancy']
-        applicationName = project.name
-        applicationId = UUID.randomUUID().toString().replaceAll("-", "")
-        applicationVersion = version.toString().replaceAll("-(?i)SNAPSHOT", "")
-        minJavaVersion = '1.8'
-        javaVersion = '1.8'
-        jdkRequired = true
-    }
 }
 
 task mybatisGenerate << {

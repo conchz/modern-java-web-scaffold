@@ -1,21 +1,20 @@
 package com.github.lavenderx.model.dao.impl;
 
+import com.github.lavenderx.model.dao.UserDAO;
 import com.github.lavenderx.model.entity.UserEntity;
 import org.apache.ibatis.session.SqlSession;
-import com.github.lavenderx.model.dao.UserDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import javax.annotation.Resource;
 
 /**
  * Created on 2016-01-18.
  *
- * @author dolphineor
+ * @author lavenderx
  */
 @Repository
 public class UserDAOImpl implements UserDAO {
 
-    @Resource
+    @Autowired
     private SqlSession sqlSession;
 
     @Override

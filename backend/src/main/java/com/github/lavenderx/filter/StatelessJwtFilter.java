@@ -1,4 +1,4 @@
-package com.github.lavenderx.web.filter;
+package com.github.lavenderx.filter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -15,12 +15,15 @@ import java.util.Objects;
 /**
  * Created on 2016-01-25.
  *
- * @author dolphineor
+ * @author lavenderx
  */
 public class StatelessJwtFilter extends OncePerRequestFilter {
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
         if (Objects.equals("/api/user/login", request.getRequestURI())) {
             filterChain.doFilter(request, response);
             return;

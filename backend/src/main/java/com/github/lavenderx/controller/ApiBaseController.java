@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created on 2016-01-24.
  *
- * @author dolphineor
+ * @author lavenderx
  */
 @RestController
 @RequestMapping(path = "/api")
@@ -23,11 +23,16 @@ public class ApiBaseController {
                 "<html>" +
                 "<head>" +
                 "<meta charset=\"UTF-8\"></head>" +
-                "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" +
+                "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge, chrome=1\">" +
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
                 "</head>" +
                 "<body>" +
-                "<h3>Hello, Welcome to <a href=\"https://github.com/dolphineor/modern-java-web-scaffold\">modern-java-web-scaffold</a></h3>" +
+                "<h3>" +
+                "Hello, Welcome to " +
+                "<a href=\"https://github.com/lavenderx/modern-java-web-scaffold\">" +
+                "modern-java-web-scaffold" +
+                "</a>" +
+                "</h3>" +
                 "</body>" +
                 "</html>";
     }

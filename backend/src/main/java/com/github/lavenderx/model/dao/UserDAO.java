@@ -5,7 +5,7 @@ import com.github.lavenderx.model.entity.UserEntity;
 /**
  * Created on 2016-01-18.
  *
- * @author dolphineor
+ * @author lavenderx
  */
 public interface UserDAO {
 

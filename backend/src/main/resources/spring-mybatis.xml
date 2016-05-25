@@ -45,11 +45,11 @@
     </bean>
 
     <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="org.dandelion.model.dao"/>
+        <property name="basePackage" value="com.github.lavenderx.model.dao"/>
     </bean>-->
 
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="org.dandelion.model.dao,org.dandelion.model.mapper"/>
+        <property name="basePackage" value="com.github.lavenderx.model.dao,com.github.lavenderx.model.mapper"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -72,7 +72,7 @@
     <aop:aspectj-autoproxy/>
 
     <aop:config>
-        <aop:pointcut id="appService" expression="execution(* org.dandelion.service..*Service*.*(..))"/>
+        <aop:pointcut id="appService" expression="execution(* com.github.lavenderx.service..*Service*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="appService"/>
     </aop:config>
 

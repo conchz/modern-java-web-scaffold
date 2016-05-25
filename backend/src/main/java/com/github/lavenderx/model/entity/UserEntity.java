@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created on 2016-01-18.
  *
- * @author dolphineor
+ * @author lavenderx
  */
 @Table(name = "USER")
 public class UserEntity extends AbstractId {

@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 /**
  * Created on 2016-01-23.
  *
- * @author dolphineor
+ * @author lavenderx
  */
 @MappedSuperclass
 public abstract class AbstractId {
