@@ -5,10 +5,9 @@
 
 ## Main Framework
 #### Backend
-* *[Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)*
+* *[Spring Boot](http://docs.spring.io/spring-boot/docs/current/reference/html/)*
 * *[Mybatis](http://mybatis.github.io/mybatis-3/)*
 * *[Undertow](http://undertow.io/)*
-* *[Capsule](http://www.capsule.io/)*
 
 #### Frontend
 * *[Vue.js](http://vuejs.org/)*
