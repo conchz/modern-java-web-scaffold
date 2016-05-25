@@ -4,4 +4,4 @@ jdk:
 before_install:
   - chmod +x gradlew
 script:
-  - ./gradlew :backend:clean fatCapsule
+  - ./gradlew :backend:clean build
