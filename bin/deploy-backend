@@ -1,19 +1,48 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-cd $base_dir
-./gradlew :backend:clean build
-cd $base_dir/backend/build/libs
+#cd $base_dir
+#./gradlew :backend:clean build
+#cd $base_dir/backend/build/libs
+#
+#deploy_dir=/var/prod/modern-java-web-app/
+#executableBackendJar=modern-java-web-scaffold-*.jar
+#restApiPid=$(netstat -anp | grep 9000 | awk '{printf $7}' | cut -d/ -f1 2> /dev/null)
+#
+#if [ ! -n "$restApiPid" ];  then
+#    echo "starting a new server"
+#else
+#    echo "redeploying ..."
+#    kill "$restApiPid"
+#fi
+#
+#rm -rf $deploy_dir/*.jar && cp $executableBackendJar $deploy_dir && cd $deploy_dir
+#java -server -Xms512m -Xmx512m -Dfile.encoding=UTF-8 -jar $executableBackendJar
 
-deploy_dir=/var/prod/modern-java-web-app/
-executableBackendJar=modern-java-web-scaffold-*.jar
-restApiPid=$(netstat -anp | grep 9000 | awk '{printf $7}' | cut -d/ -f1 2> /dev/null)
+imageVersion=`grep -e "version '" build.gradle \
+    | awk -F '\047' '{print $2}' \
+    | awk 'sub(/-(SNAPSHOT|snapshot)/, "")'`
+imageName=lavenderx/springboot-angular-seed
+containerName=springboot-angular-seed
 
-if [ ! -n "$restApiPid" ];  then
-    echo "starting a new server"
+# Get container status
+running=$(docker inspect --format="{{ .State.Running }}" ${containerName} 2> /dev/null)
+
+if [ $? -eq 1 ];  then
+    echo "The specific container doesn't exist!"
 else
-    echo "redeploying ..."
-    kill "$restApiPid"
+    # Check container running status
+    if [ "${running}" = "true" ];  then
+        docker stop ${containerName}
+    fi
+
+    docker rm ${containerName}
 fi
 
-rm -rf $deploy_dir/*.jar && cp $executableBackendJar $deploy_dir && cd $deploy_dir
-java -server -Xms512m -Xmx512m -Dfile.encoding=UTF-8 -jar $executableBackendJar
+imageId=$(docker images -q ${imageName}:${imageVersion} 2> /dev/null)
+if [ ! -z ${imageId} ];  then
+    docker rmi ${imageId}
+fi
+
+./gradlew clean buildImage
+
+docker run --name ${containerName} --net host -d -e HEAP_SIZE=1g -e PROFILE=dev ${imageName}:${imageVersion}

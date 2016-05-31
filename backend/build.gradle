@@ -9,20 +9,23 @@ buildscript {
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.5.RELEASE'
         classpath 'org.flywaydb:flyway-gradle-plugin:4.0'
+        classpath 'com.bmuschko:gradle-docker-plugin:2.6.8'
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
 apply plugin: 'org.flywaydb.flyway'
+apply plugin: 'com.bmuschko.docker-remote-api'
 
 def profile = 'dev'
+def serverPort = 'server.port'
 
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
     provided
@@ -45,6 +48,16 @@ sourceSets {
 }
 
 ext {
+
+    def commonProps = new Properties()
+    file('src/main/resources/common-config.properties').withInputStream {
+        commonProps.load(it)
+    }
+    commonProps.each {
+        if ("$serverPort" == "$it.key") {
+            serverPort = it.value
+        }
+    }
 
     def props = new Properties()
     file("src/main/resources/${profile}.properties").withInputStream {
@@ -85,13 +98,19 @@ bootRun {
 jar {
     manifest {
         attributes 'Implementation-Title': 'modern-java-web-scaffold-backend',
-                'Implementation-Version': version.toString().replaceAll("-(?i)SNAPSHOT", ""),
+                'Implementation-Version': project.version.toString().replaceFirst("-(?i)SNAPSHOT", ""),
                 'Main-Class': 'org.springframework.boot.loader.JarLauncher',
                 'Start-Class': 'com.github.lavenderx.WebAppBoot'
     }
 
+    baseName = rootProject.name + '-' + project.name
+    classifier = 'all'
     encoding = 'UTF-8'
     zip64 = true
+}
+
+docker {
+    url = 'http://server01:2375'
 }
 
 repositories {
@@ -133,6 +152,44 @@ dependencies {
     mybatisGenerator "mysql:mysql-connector-java:$mysqlDriverVersion"
     mybatisGenerator "org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion"
     mybatisGenerator "tk.mybatis:mapper:$mybatisMapperVersion"
+}
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.Dockerfile
+
+task copyDistFiles(type: Copy) {
+    dependsOn build
+
+    from("build/libs/$rootProject.name-$project.name-$project.version-all.jar") {
+        rename { String fileName ->
+            fileName.replace("-$project.version", "")
+        }
+    }
+    from 'src/main/docker'
+    into 'build/docker'
+
+    includeEmptyDirs = false
+}
+
+task createDockerfile(type: Dockerfile) {
+    dependsOn copyDistFiles
+
+    destFile = project.file('build/docker/Dockerfile')
+
+    from 'java:8-jre'
+    maintainer 'Zongzhi Bai "dolphineor@gmail.com"'
+    copyFile 'modern-java-web-scaffold-backend-all.jar', '/opt'
+    copyFile 'startup', '/'
+    runCommand 'chmod +x /startup'
+    exposePort "$serverPort".toInteger()
+    entryPoint '/startup'
+}
+
+task buildImage(type: DockerBuildImage) {
+    dependsOn createDockerfile
+
+    inputDir = createDockerfile.destFile.parentFile
+    tag = "lavenderx/$rootProject.name-$project.name:" + project.version.toString().replaceFirst("-(?i)SNAPSHOT", "")
 }
 
 task mybatisGenerate << {
