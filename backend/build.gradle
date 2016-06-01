@@ -8,7 +8,7 @@ buildscript {
 
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.5.RELEASE'
-        classpath 'org.flywaydb:flyway-gradle-plugin:4.0'
+        classpath 'org.flywaydb:flyway-gradle-plugin:4.0.1'
         classpath 'com.bmuschko:gradle-docker-plugin:2.6.8'
     }
 }
@@ -49,22 +49,22 @@ sourceSets {
 
 ext {
 
-    def commonProps = new Properties()
-    file('src/main/resources/common-config.properties').withInputStream {
-        commonProps.load(it)
-    }
-    commonProps.each {
-        if ("$serverPort" == "$it.key") {
-            serverPort = it.value
-        }
-    }
-
     def props = new Properties()
     file("src/main/resources/${profile}.properties").withInputStream {
         props.load(it)
     }
     props.each {
         project.extensions.add("$it.key", it.value)
+    }
+
+    props = new Properties()
+    file('src/main/resources/common-config.properties').withInputStream {
+        props.load(it)
+    }
+    props.each {
+        if ("$serverPort" == "$it.key") {
+            serverPort = it.value
+        }
     }
 
     logbackVersion = '1.1.7'
