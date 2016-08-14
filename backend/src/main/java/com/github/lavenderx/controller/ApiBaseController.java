@@ -1,8 +1,8 @@
 package com.github.lavenderx.controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(path = "/api")
 public class ApiBaseController {
 
-    @RequestMapping(path = {"", "/"}, method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public final String api(HttpServletResponse response) {
+    @GetMapping(path = {"", "/"}, produces = MediaType.TEXT_HTML_VALUE)
+    public final String apiBaseResponse(HttpServletResponse response) {
         response.setCharacterEncoding("UTF-8");
         return "<!DOCTYPE html>" +
                 "<html>" +
