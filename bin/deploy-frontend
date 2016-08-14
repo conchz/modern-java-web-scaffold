@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 cd $base_dir/frontend
 netstat -anp | grep 8000 | grep -v grep

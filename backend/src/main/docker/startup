@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 JAVA_OPTS="-server \
     -Dfile.encoding=UTF-8"
