@@ -1,4 +1,4 @@
-package com.github.lavenderx.http;
+package org.lavenderx.http;
 
 import java.io.Serializable;
 

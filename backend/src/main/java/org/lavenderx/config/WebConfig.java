@@ -1,11 +1,10 @@
-package com.github.lavenderx.config;
-
-import com.google.common.collect.Lists;
+package org.lavenderx.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.lavenderx.filter.StatelessJwtFilter;
+import com.google.common.collect.Lists;
+import org.lavenderx.filter.StatelessJwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

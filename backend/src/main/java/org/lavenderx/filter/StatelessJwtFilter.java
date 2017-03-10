@@ -1,4 +1,4 @@
-package com.github.lavenderx.filter;
+package org.lavenderx.filter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;

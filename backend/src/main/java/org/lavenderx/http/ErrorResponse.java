@@ -1,4 +1,4 @@
-package com.github.lavenderx.http;
+package org.lavenderx.http;
 
 /**
  * Created on 2016-05-25.

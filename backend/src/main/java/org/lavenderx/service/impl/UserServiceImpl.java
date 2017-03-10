@@ -1,7 +1,7 @@
-package com.github.lavenderx.service.impl;
+package org.lavenderx.service.impl;
 
-import com.github.lavenderx.model.dao.UserDAO;
-import com.github.lavenderx.service.UserService;
+import org.lavenderx.model.dao.UserDAO;
+import org.lavenderx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

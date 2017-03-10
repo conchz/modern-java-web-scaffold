@@ -21,8 +21,8 @@
 imageVersion=`grep -e "version '" build.gradle \
     | awk -F '\047' '{print $2}' \
     | awk 'sub(/-(SNAPSHOT|snapshot)/, "")'`
-imageName=lavenderx/springboot-angular-seed
-containerName=springboot-angular-seed
+imageName=lavenderx/modern-java-web-scaffold-backend
+containerName=springboot-rest-seed-container
 
 # Get container status
 running=$(docker inspect --format="{{ .State.Running }}" ${containerName} 2> /dev/null)

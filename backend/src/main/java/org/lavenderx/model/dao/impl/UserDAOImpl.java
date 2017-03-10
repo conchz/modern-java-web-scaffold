@@ -1,8 +1,8 @@
-package com.github.lavenderx.model.dao.impl;
+package org.lavenderx.model.dao.impl;
 
-import com.github.lavenderx.model.dao.UserDAO;
-import com.github.lavenderx.model.entity.UserEntity;
 import org.apache.ibatis.session.SqlSession;
+import org.lavenderx.model.dao.UserDAO;
+import org.lavenderx.model.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

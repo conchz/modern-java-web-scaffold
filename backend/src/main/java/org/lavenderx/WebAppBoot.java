@@ -1,4 +1,4 @@
-package com.github.lavenderx;
+package org.lavenderx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

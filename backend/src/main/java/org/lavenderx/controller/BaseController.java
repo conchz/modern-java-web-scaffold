@@ -1,7 +1,7 @@
-package com.github.lavenderx.controller;
+package org.lavenderx.controller;
 
-import com.github.lavenderx.http.BaseResponse;
-import com.github.lavenderx.http.ErrorResponse;
+import org.lavenderx.http.BaseResponse;
+import org.lavenderx.http.ErrorResponse;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

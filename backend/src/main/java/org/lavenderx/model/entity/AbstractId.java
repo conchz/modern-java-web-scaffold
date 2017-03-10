@@ -1,4 +1,4 @@
-package com.github.lavenderx.model.entity;
+package org.lavenderx.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

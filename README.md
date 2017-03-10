@@ -19,7 +19,7 @@
 
 ## Quick Start
 For backend application:
-Using *Undertow* as embedded web server and *Capsule* as packaging and deployment for JVM applications. Executing command ``` gradle :backend:clean fatCapsule ``` to package a executable jar. In order to debug, you can directly run WebAppBoot.java.
+Using *Undertow* as embedded web server and *Docker* as runtime container for JVM applications. Executing command ``` ./bin/deploy-backend ``` to publish backend application. In order to debug, you can directly run WebAppBoot.java.
 
 For frontend application:
 Using *Vue.js* for the ViewModel, *Webpack* as module bundler, *Express* as frontend server, *PM2* as production process manager for Node.js applications.
